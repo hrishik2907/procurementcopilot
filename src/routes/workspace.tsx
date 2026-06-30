@@ -73,7 +73,7 @@ function WorkspacePage() {
   );
 }
 
-function Health({ title, pct, sub, tone = "ok" as "ok" | "warn" }) {
+function Health({ title, pct, sub, tone = "ok" }: { title: string; pct: number; sub: string; tone?: "ok" | "warn" }) {
   const color = tone === "warn" ? "oklch(0.78 0.16 70)" : "oklch(0.65 0.16 155)";
   return (
     <div className="rounded-2xl border border-border bg-card p-5 shadow-soft">
