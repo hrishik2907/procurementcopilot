@@ -230,19 +230,16 @@ function DatasetsPage() {
           <div className="mt-5 rounded-3xl border border-border bg-card p-6 shadow-soft">
             <div className="grid gap-3 lg:grid-cols-9 lg:items-center">
               {FLOW.map((f, i) => (
-                <>
-                  <div
-                    key={f.name}
-                    className="lg:col-span-1 flex flex-col items-center rounded-2xl border border-border bg-surface p-4 text-center transition hover:-translate-y-0.5 hover:bg-card hover:shadow-soft"
-                  >
+                <Fragment key={f.name}>
+                  <div className="lg:col-span-1 flex flex-col items-center rounded-2xl border border-border bg-surface p-4 text-center transition hover:-translate-y-0.5 hover:bg-card hover:shadow-soft">
                     <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-background ring-1 ring-border">
                       <f.icon className="h-5 w-5" />
                     </div>
                     <div className="mt-3 text-sm font-semibold">{f.name}</div>
                     <div className="mt-1 text-[11px] text-muted-foreground">{f.sub}</div>
                   </div>
-                  {i < FLOW.length - 1 && <FlowArrow key={`a-${i}`} />}
-                </>
+                  {i < FLOW.length - 1 && <FlowArrow />}
+                </Fragment>
               ))}
             </div>
           </div>
