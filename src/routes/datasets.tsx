@@ -146,16 +146,28 @@ function DatasetsPage() {
               ))}
             </div>
 
-            <div className="mt-6 flex flex-wrap gap-3">
-              <button
-                onClick={() =>
-                  toast.success("Dataset export queued", {
-                    description: "5,248 rows · 12 tables · XLSX bundle",
-                  })
-                }
+            <div className="mt-6 flex flex-wrap items-center gap-3">
+              <span className="inline-flex items-center gap-1.5 rounded-full bg-success/10 px-3 py-1 text-xs font-semibold text-success ring-1 ring-success/30">
+                <CheckCircle2 className="h-3.5 w-3.5" /> Connected
+              </span>
+            </div>
+
+            <div className="mt-4 flex flex-wrap gap-3">
+              <a
+                href="/#gallery"
                 className="inline-flex items-center gap-2 rounded-xl bg-accent px-4 py-2 text-sm font-semibold text-accent-foreground shadow-glow"
               >
-                <Download className="h-4 w-4" /> Download Dataset
+                <LineChart className="h-4 w-4" /> View Dashboard Gallery
+              </a>
+              <button
+                onClick={() =>
+                  toast.success("Sample dataset requested", {
+                    description: "Attach your procurement CSV to enable download.",
+                  })
+                }
+                className="inline-flex items-center gap-2 rounded-xl border border-border bg-card px-4 py-2 text-sm font-semibold hover:bg-surface"
+              >
+                <Download className="h-4 w-4" /> Download Sample Dataset
               </button>
               <button
                 onClick={() =>
@@ -165,12 +177,6 @@ function DatasetsPage() {
               >
                 <BookOpen className="h-4 w-4" /> View Data Dictionary
               </button>
-              <Link
-                to="/dashboard"
-                className="inline-flex items-center gap-2 rounded-xl border border-border bg-card px-4 py-2 text-sm font-semibold hover:bg-surface"
-              >
-                <LineChart className="h-4 w-4" /> Open Analytics Dashboard
-              </Link>
             </div>
           </div>
         </section>
