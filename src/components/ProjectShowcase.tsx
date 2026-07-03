@@ -38,7 +38,7 @@ type Card = {
   value: string;
   image: string | null;
   accent: string;
-  icon: React.ComponentType<{ className?: string }>;
+  icon: ComponentType<{ className?: string }>;
 };
 
 const WALKTHROUGH: Card[] = [
