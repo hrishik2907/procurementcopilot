@@ -19,7 +19,7 @@ function ProfilePage() {
             <div className="flex h-24 w-24 items-center justify-center rounded-2xl bg-foreground text-2xl font-semibold text-background ring-4 ring-card">SK</div>
             <div className="mt-4 flex flex-wrap items-end justify-between gap-3">
               <div>
-                <div className="text-xl font-semibold tracking-tight">Sara Klein</div>
+                <div className="text-xl font-semibold tracking-tight">Hrishik Marfatia</div>
                 <div className="text-sm text-muted-foreground">Procurement Lead · Acme Industries</div>
               </div>
               <button className="rounded-lg bg-foreground px-4 py-2 text-sm font-semibold text-background">Edit profile</button>

@@ -83,7 +83,7 @@ function Home() {
                 className="inline-flex items-center gap-2 rounded-xl bg-accent px-5 py-3 text-sm font-semibold text-accent-foreground shadow-glow transition hover:brightness-95"
               >
                 <Sparkles className="h-4 w-4" />
-                Meet AI Analyst
+                Meet Jarvis
               </Link>
             </div>
 
