@@ -177,12 +177,22 @@ function DatasetsPage() {
             <Select label="Department" value={dept} onChange={setDept} options={["all", ...DEPTS]} />
             <Select label="Risk" value={risk} onChange={setRisk} options={["all", ...RISKS]} />
             <Select label="Status" value={status} onChange={setStatus} options={["all", ...STATS]} />
-            <button
-              onClick={() => toast.success("Sample procurement dataset download starting…")}
-              className="ml-auto inline-flex items-center gap-2 rounded-lg border border-border bg-background px-4 py-2 text-sm font-semibold transition hover:bg-surface"
-            >
-              <Download className="h-4 w-4" /> Download Sample Procurement Dataset
-            </button>
+            <div className="ml-auto flex flex-wrap gap-2">
+              <button
+                onClick={() => toast.success("Sample procurement dataset download starting…")}
+                className="inline-flex items-center gap-2 rounded-lg border border-border bg-background px-4 py-2 text-sm font-semibold transition hover:bg-surface"
+              >
+                <Download className="h-4 w-4" /> Download Dataset
+              </button>
+              <a
+                href="https://github.com/hrishik2907?tab=repositories"
+                target="_blank"
+                rel="noreferrer"
+                className="inline-flex items-center gap-2 rounded-lg bg-foreground px-4 py-2 text-sm font-semibold text-background transition hover:opacity-90"
+              >
+                <Github className="h-4 w-4" /> View Project on GitHub
+              </a>
+            </div>
           </div>
         </div>
 
