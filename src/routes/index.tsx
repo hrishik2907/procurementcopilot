@@ -15,6 +15,7 @@ import {
 } from "lucide-react";
 import { AppShell } from "@/components/AppShell";
 import { WelcomeModal } from "@/components/WelcomeModal";
+import { ProjectShowcase } from "@/components/ProjectShowcase";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -158,6 +159,8 @@ function Home() {
           </div>
         </div>
       </section>
+
+      <ProjectShowcase />
     </AppShell>
   );
 }
