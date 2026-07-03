@@ -54,8 +54,8 @@ const WALKTHROUGH: Card[] = [
   },
   {
     n: "02",
-    title: "AI Procurement Analyst",
-    desc: "Enterprise AI assistant capable of answering procurement questions, identifying anomalies and recommending business actions.",
+    title: "Jarvis · AI Procurement Analyst",
+    desc: "Enterprise AI assistant that answers procurement questions in plain English, identifies anomalies and recommends business actions grounded in your data.",
     tech: ["React", "OpenAI", "Prompt Engineering"],
     value: "Transforms dashboards into an intelligent decision-support platform.",
     image: null,
@@ -112,7 +112,7 @@ const PIPELINE = [
   { icon: Layers, label: "Power BI Data Model" },
   { icon: Calculator, label: "DAX Measures" },
   { icon: LayoutDashboard, label: "Interactive Dashboards" },
-  { icon: Brain, label: "AI Procurement Copilot" },
+  { icon: Brain, label: "Jarvis AI Copilot" },
   { icon: Lightbulb, label: "Executive Decision Support" },
 ];
 
@@ -129,7 +129,7 @@ const TECH_STACK = [
 const FEATURES = [
   "SQL Data Cleaning", "PySpark ETL Pipeline", "Power BI Dashboard",
   "Interactive Visualizations", "DAX KPI Development", "Cross Filtering",
-  "Supplier Analytics", "Spend Analysis", "Executive Reporting", "AI Decision Support",
+  "Supplier Analytics", "Spend Analysis", "Executive Reporting", "Jarvis Decision Support",
 ];
 
 const IMPACT = [
@@ -138,7 +138,7 @@ const IMPACT = [
   { v: "300", l: "Vendors Analysed", icon: Users },
   { v: "6", l: "Enterprise Modules", icon: Building2 },
   { v: "2", l: "Power BI Dashboards", icon: LayoutDashboard },
-  { v: "AI", l: "Decision Support", icon: Brain },
+  { v: "Jarvis", l: "Decision Support", icon: Brain },
   { v: "Live", l: "Risk Monitoring", icon: ShieldAlert },
   { v: "Auto", l: "Executive Reporting", icon: FileBarChart2 },
 ];
@@ -149,7 +149,7 @@ const WHY = [
   { icon: Cpu, t: "PySpark ETL" },
   { icon: BarChart3, t: "Power BI Reporting" },
   { icon: Briefcase, t: "Executive Analytics" },
-  { icon: Sparkles, t: "AI-enabled Business Intelligence" },
+  { icon: Sparkles, t: "Jarvis · AI-enabled Business Intelligence" },
   { icon: Lightbulb, t: "Business Decision Support" },
 ];
 
