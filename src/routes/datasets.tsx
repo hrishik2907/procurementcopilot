@@ -1,342 +1,328 @@
-import { Fragment } from "react";
+import { useMemo, useState } from "react";
 import { createFileRoute } from "@tanstack/react-router";
 import {
   Database,
   Download,
-  BookOpen,
-  LineChart,
-  FileText,
-  ShoppingCart,
-  ScrollText,
-  Users,
-  ShieldAlert,
-  Wallet,
-  ArrowRight,
-  CheckCircle2,
-  ServerCog,
-  Target,
-  Clock,
-  Table2,
-  KeyRound,
-  Share2,
-  Sparkles,
-  BrainCircuit,
-  FileBarChart2,
+  Search,
+  ArrowUpDown,
+  ArrowUp,
+  ArrowDown,
+  ChevronLeft,
+  ChevronRight,
   ShieldCheck,
+  Table2,
+  CheckCircle2,
 } from "lucide-react";
 import { AppShell } from "@/components/AppShell";
 import { PageHeader } from "@/components/PageHeader";
+import { formatINR } from "@/lib/format";
 import { toast } from "sonner";
 
 export const Route = createFileRoute("/datasets")({
   head: () => ({
     meta: [
-      { title: "Enterprise Procurement Dataset · Procurement Copilot" },
+      { title: "Dataset Center · Procurement Copilot" },
       {
         name: "description",
         content:
-          "Central repository powering procurement analytics, supplier intelligence and AI-driven business recommendations.",
+          "Enterprise procurement dataset with vendors, POs, invoices, contracts, spend and risk.",
       },
     ],
   }),
   component: DatasetsPage,
 });
 
-const STATS = [
-  { v: "5,248", l: "Records", sub: "Ingested rows" },
-  { v: "12", l: "Business Tables", sub: "Normalized schema" },
-  { v: "300", l: "Vendors", sub: "Active suppliers" },
-  { v: "FY 2024–2026", l: "Coverage", sub: "3 fiscal years" },
-];
+// ---------- Sample enterprise dataset ----------
+type Row = {
+  vendor: string;
+  po: string;
+  invoice: string;
+  contract: string;
+  department: string;
+  category: string;
+  spend: number; // INR
+  payment: "Paid" | "Pending" | "Overdue" | "Processing";
+  risk: "Low" | "Medium" | "High";
+  status: "Open" | "Closed" | "In Review";
+  country: string;
+  date: string; // ISO
+};
 
-const SOURCES = [
-  {
-    icon: FileText,
-    name: "Invoice",
-    desc: "AP invoices with 3-way match, tax and payment terms.",
-    size: "1,842 rows · 24 cols",
-  },
-  {
-    icon: ShoppingCart,
-    name: "Purchase Orders",
-    desc: "PO headers and line items across all business units.",
-    size: "1,209 rows · 31 cols",
-  },
-  {
-    icon: ScrollText,
-    name: "Contracts",
-    desc: "Framework agreements, SLAs and renewal calendar.",
-    size: "486 rows · 18 cols",
-  },
-  {
-    icon: Users,
-    name: "Vendor Master",
-    desc: "Supplier onboarding, qualification and compliance data.",
-    size: "300 rows · 42 cols",
-  },
-  {
-    icon: ShieldAlert,
-    name: "Supplier Risk",
-    desc: "Financial, geopolitical and ESG risk indicators.",
-    size: "300 rows · 16 cols",
-  },
-  {
-    icon: Wallet,
-    name: "Department Budget",
-    desc: "Cost center budgets, commitments and consumption.",
-    size: "1,111 rows · 12 cols",
-  },
+const VENDORS = [
+  "Reliance Industries", "Tata Steel", "Infosys", "Wipro", "L&T Infotech",
+  "Mahindra Logistics", "Adani Ports", "HDFC Services", "ITC Foods", "Godrej Chem",
+  "Bajaj Electricals", "Bharti Airtel", "HCL Tech", "JSW Steel", "UltraTech Cement",
+  "Siemens India", "Bosch Ltd", "ABB Power", "Hindalco", "Cipla",
 ];
+const DEPTS = ["IT", "Operations", "Finance", "Procurement", "Logistics", "Engineering", "HR", "Marketing"];
+const CATS = ["IT Services", "Raw Materials", "Logistics", "Consulting", "Marketing", "Utilities", "Capex", "MRO"];
+const COUNTRIES = ["India", "UAE", "Singapore", "Germany", "USA", "UK"];
+const PAYS: Row["payment"][] = ["Paid", "Pending", "Overdue", "Processing"];
+const RISKS: Row["risk"][] = ["Low", "Medium", "High"];
+const STATS: Row["status"][] = ["Open", "Closed", "In Review"];
 
-const FLOW = [
-  { icon: Database, name: "Dataset", sub: "Ingested source" },
-  { icon: ShieldCheck, name: "Data Validation", sub: "Quality & lineage" },
-  { icon: LineChart, name: "Analytics Dashboard", sub: "KPIs & trends" },
-  { icon: BrainCircuit, name: "AI Procurement Analyst", sub: "Insight generation" },
-  { icon: FileBarChart2, name: "Executive Reports", sub: "Board-ready output" },
-];
+function seeded(i: number) {
+  return Math.abs(Math.sin(i * 9301 + 49297)) % 1;
+}
+const DATA: Row[] = Array.from({ length: 120 }).map((_, i) => {
+  const r = (n: number) => seeded(i * 7 + n);
+  const spend = Math.round(50_000 + r(1) * 4_20_00_000);
+  const y = 2024 + Math.floor(r(6) * 3);
+  const m = 1 + Math.floor(r(7) * 12);
+  const d = 1 + Math.floor(r(8) * 27);
+  return {
+    vendor: VENDORS[Math.floor(r(2) * VENDORS.length)],
+    po: `PO-${String(100000 + i).slice(1)}`,
+    invoice: `INV-${String(200000 + i).slice(1)}`,
+    contract: `CTR-${String(3000 + i).slice(1)}`,
+    department: DEPTS[Math.floor(r(3) * DEPTS.length)],
+    category: CATS[Math.floor(r(4) * CATS.length)],
+    spend,
+    payment: PAYS[Math.floor(r(5) * PAYS.length)],
+    risk: RISKS[Math.floor(r(9) * RISKS.length)],
+    status: STATS[Math.floor(r(10) * STATS.length)],
+    country: COUNTRIES[Math.floor(r(11) * COUNTRIES.length)],
+    date: `${y}-${String(m).padStart(2, "0")}-${String(d).padStart(2, "0")}`,
+  };
+});
 
-const INFO = [
-  { icon: ServerCog, label: "Source System", value: "SAP S/4HANA · Ariba · Coupa" },
-  { icon: Target, label: "Business Purpose", value: "Procure-to-Pay analytics & decision support" },
-  { icon: Clock, label: "Last Updated", value: "Today · 09:42 UTC" },
-  { icon: Table2, label: "Total Tables", value: "12 normalized business tables" },
-  { icon: KeyRound, label: "Primary Keys", value: "vendor_id, po_id, invoice_id, contract_id" },
-  { icon: Share2, label: "Relationships", value: "28 foreign keys · star schema" },
+const COLUMNS: { key: keyof Row; label: string; align?: "right" }[] = [
+  { key: "vendor", label: "Vendor" },
+  { key: "po", label: "Purchase Order" },
+  { key: "invoice", label: "Invoice" },
+  { key: "contract", label: "Contract" },
+  { key: "department", label: "Department" },
+  { key: "category", label: "Category" },
+  { key: "spend", label: "Spend", align: "right" },
+  { key: "payment", label: "Payment" },
+  { key: "risk", label: "Risk" },
+  { key: "status", label: "Status" },
+  { key: "country", label: "Country" },
+  { key: "date", label: "Date" },
 ];
 
 function DatasetsPage() {
+  const [q, setQ] = useState("");
+  const [dept, setDept] = useState("all");
+  const [risk, setRisk] = useState("all");
+  const [status, setStatus] = useState("all");
+  const [sortKey, setSortKey] = useState<keyof Row>("date");
+  const [sortDir, setSortDir] = useState<"asc" | "desc">("desc");
+  const [page, setPage] = useState(1);
+  const perPage = 10;
+
+  const filtered = useMemo(() => {
+    const ql = q.trim().toLowerCase();
+    let rows = DATA.filter((r) => {
+      if (dept !== "all" && r.department !== dept) return false;
+      if (risk !== "all" && r.risk !== risk) return false;
+      if (status !== "all" && r.status !== status) return false;
+      if (!ql) return true;
+      return Object.values(r).some((v) => String(v).toLowerCase().includes(ql));
+    });
+    rows = [...rows].sort((a, b) => {
+      const av = a[sortKey];
+      const bv = b[sortKey];
+      const cmp = typeof av === "number" && typeof bv === "number" ? av - bv : String(av).localeCompare(String(bv));
+      return sortDir === "asc" ? cmp : -cmp;
+    });
+    return rows;
+  }, [q, dept, risk, status, sortKey, sortDir]);
+
+  const totalPages = Math.max(1, Math.ceil(filtered.length / perPage));
+  const pageRows = filtered.slice((page - 1) * perPage, page * perPage);
+  const totalSpend = filtered.reduce((s, r) => s + r.spend, 0);
+
+  const toggleSort = (k: keyof Row) => {
+    if (sortKey === k) setSortDir((d) => (d === "asc" ? "desc" : "asc"));
+    else {
+      setSortKey(k);
+      setSortDir("asc");
+    }
+    setPage(1);
+  };
+
   return (
     <AppShell>
       <PageHeader
-        eyebrow="Data"
-        title="Dataset Center"
-        description="Enterprise procurement data foundation for analytics, AI and executive reporting."
+        eyebrow="Dataset Center"
+        title="Enterprise Procurement Dataset"
+        description="Central repository powering procurement analytics, supplier intelligence and Jarvis AI-driven business recommendations."
       />
 
-      <div className="mx-auto max-w-7xl space-y-10 px-4 py-8 sm:px-6 lg:px-8">
-        {/* SECTION 1 */}
-        <section className="relative overflow-hidden rounded-3xl border border-border bg-card p-6 shadow-soft sm:p-8">
-          <div
-            className="pointer-events-none absolute inset-0 opacity-70"
-            style={{ background: "var(--gradient-hero)" }}
-          />
-          <div className="relative">
-            <div className="flex items-center gap-2 text-[11px] font-semibold uppercase tracking-[0.18em] text-muted-foreground">
-              <Sparkles className="h-3.5 w-3.5 text-accent" /> Enterprise data foundation
-            </div>
-            <h2 className="mt-2 text-2xl font-semibold tracking-tight sm:text-3xl">
-              Enterprise Procurement Dataset
-            </h2>
-            <p className="mt-2 max-w-3xl text-sm text-muted-foreground sm:text-base">
-              Central repository powering procurement analytics, supplier intelligence and AI-driven
-              business recommendations.
-            </p>
+      <div className="mx-auto max-w-[1500px] space-y-6 px-4 py-6 sm:px-6 lg:px-8">
+        {/* Summary */}
+        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+          <Stat icon={Table2} k="5,248" l="Records" />
+          <Stat icon={Database} k="12" l="Business Tables" />
+          <Stat icon={ShieldCheck} k="300" l="Vendors" />
+          <Stat icon={CheckCircle2} k={formatINR(totalSpend)} l="Filtered Spend" />
+        </div>
 
-            <div className="mt-6 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
-              {STATS.map((s) => (
-                <div
-                  key={s.l}
-                  className="rounded-2xl border border-border bg-surface p-4 shadow-soft transition hover:-translate-y-0.5 hover:bg-card"
-                >
-                  <div className="text-2xl font-semibold tracking-tight">{s.v}</div>
-                  <div className="mt-1 text-sm font-medium">{s.l}</div>
-                  <div className="text-xs text-muted-foreground">{s.sub}</div>
-                </div>
-              ))}
+        {/* Toolbar */}
+        <div className="rounded-2xl border border-border bg-card p-4 shadow-soft">
+          <div className="flex flex-wrap items-center gap-3">
+            <div className="relative min-w-[240px] flex-1">
+              <Search className="pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
+              <input
+                value={q}
+                onChange={(e) => {
+                  setQ(e.target.value);
+                  setPage(1);
+                }}
+                placeholder="Search vendors, PO, invoice, contract…"
+                className="w-full rounded-lg border border-border bg-surface py-2 pl-9 pr-3 text-sm outline-none focus:border-foreground/20 focus:ring-2 focus:ring-accent/40"
+              />
             </div>
-
-            <div className="mt-6 flex flex-wrap items-center gap-3">
-              <span className="inline-flex items-center gap-1.5 rounded-full bg-success/10 px-3 py-1 text-xs font-semibold text-success ring-1 ring-success/30">
-                <CheckCircle2 className="h-3.5 w-3.5" /> Connected
-              </span>
-            </div>
-
-            <div className="mt-4 flex flex-wrap gap-3">
-              <a
-                href="/#gallery"
-                className="inline-flex items-center gap-2 rounded-xl bg-accent px-4 py-2 text-sm font-semibold text-accent-foreground shadow-glow"
-              >
-                <LineChart className="h-4 w-4" /> View Dashboard Gallery
-              </a>
-              <button
-                onClick={() =>
-                  toast.success("Sample dataset requested", {
-                    description: "Attach your procurement CSV to enable download.",
-                  })
-                }
-                className="inline-flex items-center gap-2 rounded-xl border border-border bg-card px-4 py-2 text-sm font-semibold hover:bg-surface"
-              >
-                <Download className="h-4 w-4" /> Download Sample Dataset
-              </button>
-              <button
-                onClick={() =>
-                  toast("Data dictionary", { description: "12 tables · 232 fields documented" })
-                }
-                className="inline-flex items-center gap-2 rounded-xl border border-border bg-card px-4 py-2 text-sm font-semibold hover:bg-surface"
-              >
-                <BookOpen className="h-4 w-4" /> View Data Dictionary
-              </button>
-            </div>
+            <Select label="Department" value={dept} onChange={setDept} options={["all", ...DEPTS]} />
+            <Select label="Risk" value={risk} onChange={setRisk} options={["all", ...RISKS]} />
+            <Select label="Status" value={status} onChange={setStatus} options={["all", ...STATS]} />
+            <button
+              onClick={() => toast.success("Sample procurement dataset download starting…")}
+              className="ml-auto inline-flex items-center gap-2 rounded-lg border border-border bg-background px-4 py-2 text-sm font-semibold transition hover:bg-surface"
+            >
+              <Download className="h-4 w-4" /> Download Sample Procurement Dataset
+            </button>
           </div>
-        </section>
+        </div>
 
-        {/* SECTION 2 */}
-        <section>
-          <div className="flex items-end justify-between">
+        {/* Table */}
+        <div className="overflow-hidden rounded-2xl border border-border bg-card shadow-soft">
+          <div className="max-h-[640px] overflow-auto">
+            <table className="w-full min-w-[1100px] border-collapse text-sm">
+              <thead className="sticky top-0 z-10 bg-surface">
+                <tr className="border-b border-border">
+                  {COLUMNS.map((c) => {
+                    const active = sortKey === c.key;
+                    const Icon = !active ? ArrowUpDown : sortDir === "asc" ? ArrowUp : ArrowDown;
+                    return (
+                      <th
+                        key={c.key}
+                        onClick={() => toggleSort(c.key)}
+                        className={`cursor-pointer whitespace-nowrap px-4 py-3 text-[11px] font-semibold uppercase tracking-[0.12em] text-muted-foreground hover:text-foreground ${
+                          c.align === "right" ? "text-right" : "text-left"
+                        }`}
+                      >
+                        <span className="inline-flex items-center gap-1">
+                          {c.label}
+                          <Icon className={`h-3 w-3 ${active ? "text-foreground" : "text-muted-foreground/60"}`} />
+                        </span>
+                      </th>
+                    );
+                  })}
+                </tr>
+              </thead>
+              <tbody>
+                {pageRows.map((r, i) => (
+                  <tr key={r.po} className={`border-b border-border/60 transition hover:bg-surface/70 ${i % 2 ? "bg-background" : ""}`}>
+                    <td className="px-4 py-3 font-medium">{r.vendor}</td>
+                    <td className="px-4 py-3 text-muted-foreground">{r.po}</td>
+                    <td className="px-4 py-3 text-muted-foreground">{r.invoice}</td>
+                    <td className="px-4 py-3 text-muted-foreground">{r.contract}</td>
+                    <td className="px-4 py-3">{r.department}</td>
+                    <td className="px-4 py-3">{r.category}</td>
+                    <td className="px-4 py-3 text-right font-semibold">{formatINR(r.spend)}</td>
+                    <td className="px-4 py-3"><Tag v={r.payment} tone={payTone(r.payment)} /></td>
+                    <td className="px-4 py-3"><Tag v={r.risk} tone={riskTone(r.risk)} /></td>
+                    <td className="px-4 py-3"><Tag v={r.status} tone={statusTone(r.status)} /></td>
+                    <td className="px-4 py-3 text-muted-foreground">{r.country}</td>
+                    <td className="px-4 py-3 whitespace-nowrap text-muted-foreground">{r.date}</td>
+                  </tr>
+                ))}
+                {pageRows.length === 0 && (
+                  <tr>
+                    <td colSpan={COLUMNS.length} className="px-4 py-12 text-center text-sm text-muted-foreground">
+                      No records match the current filters.
+                    </td>
+                  </tr>
+                )}
+              </tbody>
+            </table>
+          </div>
+
+          {/* Pagination */}
+          <div className="flex flex-wrap items-center justify-between gap-3 border-t border-border bg-surface px-4 py-3 text-xs text-muted-foreground">
             <div>
-              <h2 className="text-xl font-semibold tracking-tight sm:text-2xl">
-                Available Data Sources
-              </h2>
-              <p className="mt-1 text-sm text-muted-foreground">
-                Six core business tables curated for procurement decision-making.
-              </p>
+              Showing <span className="font-semibold text-foreground">{(page - 1) * perPage + 1}</span>–
+              <span className="font-semibold text-foreground">{Math.min(page * perPage, filtered.length)}</span> of{" "}
+              <span className="font-semibold text-foreground">{filtered.length}</span> records
             </div>
-            <span className="hidden text-xs text-muted-foreground sm:block">
-              {SOURCES.length} sources
-            </span>
-          </div>
-
-          <div className="mt-4 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-            {SOURCES.map((s) => (
-              <div
-                key={s.name}
-                className="group flex flex-col rounded-2xl border border-border bg-card p-5 shadow-soft transition hover:-translate-y-0.5 hover:shadow-elevated"
+            <div className="flex items-center gap-2">
+              <button
+                disabled={page === 1}
+                onClick={() => setPage((p) => Math.max(1, p - 1))}
+                className="inline-flex h-8 w-8 items-center justify-center rounded-md border border-border bg-background transition hover:bg-card disabled:opacity-40"
+                aria-label="Previous page"
               >
-                <div className="flex items-center justify-between">
-                  <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-surface ring-1 ring-border">
-                    <s.icon className="h-5 w-5" />
-                  </div>
-                  <span className="inline-flex items-center gap-1 rounded-full bg-success/10 px-2 py-0.5 text-[11px] font-medium text-success">
-                    <CheckCircle2 className="h-3 w-3" /> Active
-                  </span>
-                </div>
-                <div className="mt-4 text-sm font-semibold">{s.name}</div>
-                <p className="mt-1 flex-1 text-xs text-muted-foreground">{s.desc}</p>
-                <div className="mt-4 flex items-center justify-between border-t border-border pt-3 text-[11px] text-muted-foreground">
-                  <span className="inline-flex items-center gap-1">
-                    <Table2 className="h-3 w-3" /> {s.size}
-                  </span>
-                  <span className="inline-flex items-center gap-1 font-medium text-foreground opacity-0 transition group-hover:opacity-100">
-                    Explore <ArrowRight className="h-3 w-3" />
-                  </span>
-                </div>
-              </div>
-            ))}
-          </div>
-        </section>
-
-        {/* SECTION 3 */}
-        <section>
-          <h2 className="text-xl font-semibold tracking-tight sm:text-2xl">Procurement Data Flow</h2>
-          <p className="mt-1 text-sm text-muted-foreground">
-            From raw ingestion to executive-ready insight.
-          </p>
-
-          <div className="mt-5 rounded-3xl border border-border bg-card p-6 shadow-soft">
-            <div className="grid gap-3 lg:grid-cols-9 lg:items-center">
-              {FLOW.map((f, i) => (
-                <Fragment key={f.name}>
-                  <div className="lg:col-span-1 flex flex-col items-center rounded-2xl border border-border bg-surface p-4 text-center transition hover:-translate-y-0.5 hover:bg-card hover:shadow-soft">
-                    <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-background ring-1 ring-border">
-                      <f.icon className="h-5 w-5" />
-                    </div>
-                    <div className="mt-3 text-sm font-semibold">{f.name}</div>
-                    <div className="mt-1 text-[11px] text-muted-foreground">{f.sub}</div>
-                  </div>
-                  {i < FLOW.length - 1 && <FlowArrow />}
-                </Fragment>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        {/* SECTION 4 */}
-        <section>
-          <h2 className="text-xl font-semibold tracking-tight sm:text-2xl">Dataset Information</h2>
-          <p className="mt-1 text-sm text-muted-foreground">
-            Governance, lineage and structural metadata.
-          </p>
-
-          <div className="mt-4 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-            {INFO.map((i) => (
-              <div
-                key={i.label}
-                className="rounded-2xl border border-border bg-card p-5 shadow-soft"
+                <ChevronLeft className="h-4 w-4" />
+              </button>
+              <span>
+                Page <span className="font-semibold text-foreground">{page}</span> / {totalPages}
+              </span>
+              <button
+                disabled={page >= totalPages}
+                onClick={() => setPage((p) => Math.min(totalPages, p + 1))}
+                className="inline-flex h-8 w-8 items-center justify-center rounded-md border border-border bg-background transition hover:bg-card disabled:opacity-40"
+                aria-label="Next page"
               >
-                <div className="flex items-center gap-2 text-[11px] font-semibold uppercase tracking-[0.16em] text-muted-foreground">
-                  <i.icon className="h-3.5 w-3.5 text-accent" /> {i.label}
-                </div>
-                <div className="mt-2 text-sm font-medium">{i.value}</div>
-              </div>
-            ))}
-          </div>
-        </section>
-
-        {/* SECTION 5 */}
-        <section>
-          <div className="relative overflow-hidden rounded-3xl border border-border bg-card p-6 shadow-soft sm:p-7">
-            <div
-              className="pointer-events-none absolute inset-0 opacity-80"
-              style={{ background: "var(--gradient-hero)" }}
-            />
-            <div className="relative flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
-              <div className="flex items-start gap-4">
-                <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl bg-accent/20 text-accent-foreground">
-                  <ShieldCheck className="h-5 w-5" />
-                </div>
-                <div>
-                  <div className="text-sm font-semibold">Enterprise-grade procurement dataset</div>
-                  <p className="mt-1 max-w-2xl text-sm text-muted-foreground">
-                    Supporting dashboards, AI analysis, supplier intelligence and executive reporting
-                    across the global Procure-to-Pay lifecycle.
-                  </p>
-                </div>
-              </div>
-              <div className="flex flex-wrap gap-2">
-                <span className="rounded-full bg-success/10 px-2.5 py-1 text-[11px] font-medium text-success">
-                  SOC 2 aligned
-                </span>
-                <span className="rounded-full bg-accent/15 px-2.5 py-1 text-[11px] font-medium text-accent-foreground">
-                  GDPR ready
-                </span>
-                <span className="rounded-full bg-surface px-2.5 py-1 text-[11px] font-medium text-muted-foreground ring-1 ring-border">
-                  Audit logged
-                </span>
-              </div>
+                <ChevronRight className="h-4 w-4" />
+              </button>
             </div>
           </div>
-        </section>
+        </div>
       </div>
     </AppShell>
   );
 }
 
-function FlowArrow() {
+function Stat({ icon: Icon, k, l }: { icon: any; k: string; l: string }) {
   return (
-    <div className="lg:col-span-1 flex items-center justify-center py-2 lg:py-0">
-      <div className="relative h-6 w-full max-w-[80px] lg:h-[2px]">
-        <div className="absolute inset-x-0 top-1/2 hidden h-[2px] -translate-y-1/2 overflow-hidden rounded-full bg-border lg:block">
-          <div
-            className="h-full w-1/2 rounded-full"
-            style={{
-              background:
-                "linear-gradient(90deg, transparent, oklch(0.86 0.17 92), transparent)",
-              animation: "flow-slide 2.4s ease-in-out infinite",
-            }}
-          />
-        </div>
-        <div className="flex h-full items-center justify-center lg:hidden">
-          <ArrowRight className="h-4 w-4 rotate-90 text-muted-foreground" />
-        </div>
-        <ArrowRight className="absolute right-0 top-1/2 hidden h-4 w-4 -translate-y-1/2 text-muted-foreground lg:block" />
+    <div className="rounded-2xl border border-border bg-card p-5 shadow-soft">
+      <div className="flex items-center gap-2 text-[11px] font-semibold uppercase tracking-[0.14em] text-muted-foreground">
+        <Icon className="h-3.5 w-3.5 text-accent" /> {l}
       </div>
-      <style>{`
-        @keyframes flow-slide {
-          0% { transform: translateX(-100%); }
-          100% { transform: translateX(200%); }
-        }
-      `}</style>
+      <div className="mt-1 text-2xl font-semibold tracking-tight">{k}</div>
     </div>
   );
+}
+
+function Select({
+  label, value, onChange, options,
+}: { label: string; value: string; onChange: (v: string) => void; options: string[] }) {
+  return (
+    <label className="inline-flex items-center gap-2 rounded-lg border border-border bg-surface px-3 py-2 text-xs">
+      <span className="font-semibold text-muted-foreground">{label}</span>
+      <select
+        value={value}
+        onChange={(e) => onChange(e.target.value)}
+        className="bg-transparent text-sm font-medium outline-none"
+      >
+        {options.map((o) => (
+          <option key={o} value={o}>
+            {o === "all" ? "All" : o}
+          </option>
+        ))}
+      </select>
+    </label>
+  );
+}
+
+function Tag({ v, tone }: { v: string; tone: "ok" | "warn" | "bad" | "muted" | "info" }) {
+  const cls =
+    tone === "ok" ? "bg-success/10 text-success ring-success/30" :
+    tone === "warn" ? "bg-warning/10 text-warning ring-warning/30" :
+    tone === "bad" ? "bg-destructive/10 text-destructive ring-destructive/30" :
+    tone === "info" ? "bg-accent/15 text-accent-foreground ring-accent/30" :
+    "bg-surface text-muted-foreground ring-border";
+  return <span className={`inline-flex items-center rounded-full px-2 py-0.5 text-[11px] font-semibold ring-1 ${cls}`}>{v}</span>;
+}
+
+function payTone(p: Row["payment"]) {
+  return p === "Paid" ? "ok" : p === "Overdue" ? "bad" : p === "Processing" ? "info" : "warn";
+}
+function riskTone(r: Row["risk"]) {
+  return r === "Low" ? "ok" : r === "Medium" ? "warn" : "bad";
+}
+function statusTone(s: Row["status"]) {
+  return s === "Closed" ? "muted" : s === "In Review" ? "warn" : "info";
 }
