@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 
-const KEY = "pc.dataset.loaded";
+const KEY = "pc.workspace.entered.v2";
 
 export function useDatasetLoaded() {
   const [loaded, setLoaded] = useState<boolean | null>(null);
