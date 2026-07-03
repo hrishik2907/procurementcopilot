@@ -12,6 +12,7 @@ import {
   ShieldCheck,
   Table2,
   CheckCircle2,
+  Github,
 } from "lucide-react";
 import { AppShell } from "@/components/AppShell";
 import { PageHeader } from "@/components/PageHeader";
