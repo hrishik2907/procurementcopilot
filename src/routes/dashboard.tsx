@@ -69,6 +69,33 @@ function DashboardPage() {
           />
         </section>
 
+        {/* Live Power BI Dashboard */}
+        <section className="rounded-3xl border border-border bg-card p-6 shadow-soft sm:p-8">
+          <div className="flex flex-col gap-5 lg:flex-row lg:items-center lg:justify-between">
+            <div className="max-w-2xl">
+              <div className="inline-flex items-center gap-2 rounded-full border border-accent/40 bg-accent/10 px-3 py-1 text-[11px] font-semibold text-foreground/80">
+                <Lock className="h-3.5 w-3.5" /> Live Power BI Dashboard
+              </div>
+              <h3 className="mt-3 text-xl font-semibold tracking-tight sm:text-2xl">
+                Open the live enterprise report
+              </h3>
+              <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
+                For security reasons, the live Power BI dashboard requires a Microsoft organizational account.
+                Use the button to open the live report in a new tab.
+              </p>
+            </div>
+            <a
+              href="#"
+              target="_blank"
+              rel="noreferrer"
+              className="inline-flex items-center justify-center gap-2 rounded-xl bg-foreground px-5 py-3 text-sm font-semibold text-background shadow-soft transition hover:opacity-90"
+            >
+              <ExternalLink className="h-4 w-4" />
+              Open Live Dashboard
+            </a>
+          </div>
+        </section>
+
         {/* SECTION 3 — Project Architecture */}
         <section>
           <div className="mb-5">
@@ -214,7 +241,7 @@ function DashboardPage() {
                 className="inline-flex items-center gap-2 rounded-xl border border-border bg-card px-5 py-2.5 text-sm font-medium text-foreground shadow-sm transition hover:bg-surface"
               >
                 <Download className="h-4 w-4" />
-                Download Dataset
+                Download Sample Procurement Dataset
               </a>
               <a
                 href="#"
@@ -258,7 +285,7 @@ function DashboardPage() {
                 className="inline-flex items-center gap-2 rounded-lg border border-accent/50 bg-accent/20 px-4 py-2.5 text-sm font-medium text-foreground shadow-sm transition hover:bg-accent/30"
               >
                 <MessageSquare className="h-4 w-4" />
-                Ask AI About Dashboard
+                Ask Jarvis About Dashboard
               </Link>
             </div>
           </div>

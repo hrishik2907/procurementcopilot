@@ -25,7 +25,7 @@ function AboutPage() {
         <div className="grid gap-4 sm:grid-cols-3">
           {[
             { i: BarChart3, t: "Dashboard", d: "Shows WHAT happened." },
-            { i: Brain, t: "AI Analyst", d: "Explains WHY it happened." },
+            { i: Brain, t: "Jarvis", d: "Explains WHY it happened." },
             { i: Lightbulb, t: "AI Recommendations", d: "Suggests WHAT to improve." },
           ].map((c) => (
             <div key={c.t} className="rounded-2xl border border-border bg-card p-5 shadow-soft">

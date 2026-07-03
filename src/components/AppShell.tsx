@@ -18,7 +18,7 @@ import type { ReactNode } from "react";
 const NAV = [
   { to: "/", label: "Home", icon: Home },
   { to: "/dashboard", label: "Dashboard", icon: LayoutDashboard },
-  { to: "/ai-analyst", label: "AI Procurement Analyst", icon: Sparkles },
+  { to: "/ai-analyst", label: "Jarvis AI Analyst", icon: Sparkles },
   { to: "/workspace", label: "Procurement Workspace", icon: Workflow },
   { to: "/risk", label: "Risk Center", icon: ShieldAlert },
   { to: "/reports", label: "Executive Reports", icon: FileBarChart2 },
@@ -93,10 +93,10 @@ export function AppShell({ children }: { children: ReactNode }) {
                 <span className="absolute right-1.5 top-1.5 h-1.5 w-1.5 rounded-full bg-accent" />
               </button>
               <div className="flex items-center gap-2 rounded-full border border-border bg-card py-1 pl-1 pr-3">
-                <div className="flex h-7 w-7 items-center justify-center rounded-full bg-accent text-[11px] font-semibold text-accent-foreground">SK</div>
+                <div className="flex h-7 w-7 items-center justify-center rounded-full bg-accent text-[11px] font-semibold text-accent-foreground">HM</div>
                 <div className="text-xs leading-tight">
-                  <div className="font-medium">Sara Klein</div>
-                  <div className="text-muted-foreground">Procurement Lead</div>
+                  <div className="font-medium">Hrishik Marfatia</div>
+                  <div className="text-muted-foreground">Procurement Analyst</div>
                 </div>
               </div>
             </div>

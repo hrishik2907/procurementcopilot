@@ -29,7 +29,7 @@ export const Route = createFileRoute("/")({
 
 const FEATURES = [
   { icon: LayoutDashboard, title: "Dashboard", desc: "Visualize procurement performance across spend, suppliers and cycle time.", to: "/dashboard" },
-  { icon: Sparkles, title: "AI Procurement Analyst", desc: "Understand why business events happened — in natural language.", to: "/ai-analyst" },
+  { icon: Sparkles, title: "Jarvis AI Analyst", desc: "Ask Jarvis in plain English — get root cause and recommendations grounded in your enterprise data.", to: "/ai-analyst" },
   { icon: ShieldAlert, title: "Risk Center", desc: "Identify supplier, compliance and concentration risks proactively.", to: "/risk" },
   { icon: FileBarChart2, title: "Executive Reports", desc: "Generate AI-powered summaries for the leadership team.", to: "/reports" },
   { icon: Workflow, title: "Procurement Workspace", desc: "Walk through the full Procure-to-Pay process end to end.", to: "/workspace" },
@@ -83,7 +83,7 @@ function Home() {
                 className="inline-flex items-center gap-2 rounded-xl bg-accent px-5 py-3 text-sm font-semibold text-accent-foreground shadow-glow transition hover:brightness-95"
               >
                 <Sparkles className="h-4 w-4" />
-                Meet AI Analyst
+                Meet Jarvis
               </Link>
             </div>
 

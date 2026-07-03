@@ -5,7 +5,7 @@ import { AppShell } from "@/components/AppShell";
 import { PageHeader } from "@/components/PageHeader";
 
 export const Route = createFileRoute("/ai-analyst")({
-  head: () => ({ meta: [{ title: "AI Procurement Analyst · Procurement Copilot" }] }),
+  head: () => ({ meta: [{ title: "Jarvis · AI Procurement Analyst · Procurement Copilot" }] }),
   component: AnalystPage,
 });
 
@@ -22,19 +22,19 @@ const SAMPLE = `Maverick spend rose by 1.9% in October, driven primarily by IT S
 
 Root cause analysis:
 • 14 off-contract POs were raised against Vertex IT Services, bypassing the preferred-supplier framework.
-• 9 of these POs originated from the EMEA Engineering cost center after the framework agreement expired on Oct 3.
-• Approval thresholds were not updated, allowing requisitions under $25k to skip category-manager review.
+• 9 of these POs originated from the Engineering cost center after the framework agreement expired on Oct 3.
+• Approval thresholds were not updated, allowing requisitions under ₹ 20 Lakh to skip category-manager review.
 
 Recommended actions:
-1. Renew the Vertex framework agreement (saving estimated $312k annually vs spot rates).
-2. Lower auto-approval threshold for IT Services to $10k until contract is in place.
+1. Renew the Vertex framework agreement (saving an estimated ₹ 2.48 Cr annually vs spot rates).
+2. Lower auto-approval threshold for IT Services to ₹ 8 Lakh until the contract is in place.
 3. Notify the 6 requisitioners with off-contract activity and route future POs via the catalog.
 
-Estimated impact: −$0.42M run-rate maverick spend, +2.1 days faster PO cycle in IT Services.`;
+Estimated impact: −₹ 3.35 Cr run-rate maverick spend, +2.1 days faster PO cycle in IT Services.`;
 
 function AnalystPage() {
   const [messages, setMessages] = useState<Msg[]>([
-    { role: "ai", text: "Hi Sara — I've ingested your FY26 dataset (5,248 rows across 6 tables). Ask me anything about your procurement performance." },
+    { role: "ai", text: "Hi Hrishik — Jarvis here. I've ingested your FY2024–FY2026 procurement dataset (5,248 rows across 12 tables). Ask me anything about spend, suppliers, contracts or risk." },
   ]);
   const [input, setInput] = useState("");
   const [busy, setBusy] = useState(false);
@@ -69,8 +69,8 @@ function AnalystPage() {
     <AppShell>
       <PageHeader
         eyebrow="Decision support"
-        title="AI Procurement Analyst"
-        description="Ask questions in plain English. The AI explains why business events happened and recommends what to improve."
+        title="Meet Jarvis · AI Procurement Analyst"
+        description="Ask Jarvis in plain English. It explains why business events happened and recommends what to improve — grounded in your enterprise dataset."
       />
 
       <div className="mx-auto grid max-w-7xl gap-6 px-4 py-6 sm:px-6 lg:grid-cols-12 lg:px-8">
@@ -80,8 +80,8 @@ function AnalystPage() {
             <div className="flex items-center gap-2 border-b border-border px-5 py-3">
               <div className="flex h-7 w-7 items-center justify-center rounded-lg bg-accent text-accent-foreground"><Sparkles className="h-4 w-4" /></div>
               <div>
-                <div className="text-sm font-semibold">Copilot Analyst</div>
-                <div className="text-[11px] text-muted-foreground">Connected to FY26 dataset · Reasoning enabled</div>
+                <div className="text-sm font-semibold">Jarvis · Procurement Decision Engine</div>
+                <div className="text-[11px] text-muted-foreground">Connected to FY2024–FY2026 dataset · Reasoning enabled</div>
               </div>
             </div>
 
@@ -120,11 +120,11 @@ function AnalystPage() {
                 <input
                   value={input}
                   onChange={(e) => setInput(e.target.value)}
-                  placeholder="Ask why, what, or how…"
+                  placeholder="Ask Jarvis why, what, or how…"
                   className="flex-1 bg-transparent text-sm outline-none placeholder:text-muted-foreground"
                 />
                 <button type="submit" disabled={busy} className="inline-flex items-center gap-1 rounded-lg bg-foreground px-3 py-1.5 text-xs font-semibold text-background disabled:opacity-50">
-                  Send <Send className="h-3.5 w-3.5" />
+                  Ask Jarvis <Send className="h-3.5 w-3.5" />
                 </button>
               </form>
             </div>
@@ -133,17 +133,17 @@ function AnalystPage() {
 
         {/* Side panel */}
         <div className="space-y-4 lg:col-span-4">
-          <Card icon={Brain} title="How it reasons">
-            The analyst correlates spend, supplier and process data, then uses LLM reasoning to explain causes and recommend actions grounded in your dataset.
+          <Card icon={Brain} title="How Jarvis reasons">
+            Jarvis correlates spend, supplier and process data, then uses LLM reasoning to explain causes and recommend actions grounded in your enterprise dataset.
           </Card>
-          <Card icon={Lightbulb} title="Today's top recommendations">
+          <Card icon={Lightbulb} title="Jarvis recommendations today">
             <ul className="mt-2 space-y-2 text-xs text-muted-foreground">
-              <li className="flex gap-2"><span className="mt-1 h-1.5 w-1.5 shrink-0 rounded-full bg-accent" />Renew Vertex IT framework — save ~$312k/yr</li>
+              <li className="flex gap-2"><span className="mt-1 h-1.5 w-1.5 shrink-0 rounded-full bg-accent" />Renew Vertex IT framework — save ~₹ 2.48 Cr/yr</li>
               <li className="flex gap-2"><span className="mt-1 h-1.5 w-1.5 shrink-0 rounded-full bg-accent" />Consolidate 3 logistics suppliers into 1</li>
-              <li className="flex gap-2"><span className="mt-1 h-1.5 w-1.5 shrink-0 rounded-full bg-accent" />Lower IT auto-approval threshold to $10k</li>
+              <li className="flex gap-2"><span className="mt-1 h-1.5 w-1.5 shrink-0 rounded-full bg-accent" />Lower IT auto-approval threshold to ₹ 8 Lakh</li>
             </ul>
           </Card>
-          <Card icon={ShieldAlert} title="Watchlist">
+          <Card icon={ShieldAlert} title="Jarvis watchlist">
             <div className="mt-2 space-y-2 text-xs">
               <Row k="Vertex IT Services" v="High" tone="bad" />
               <Row k="Helix Logistics" v="Medium" tone="warn" />
@@ -152,7 +152,7 @@ function AnalystPage() {
           </Card>
           <Card icon={TrendingDown} title="Estimated impact">
             <div className="mt-2 grid grid-cols-2 gap-2 text-center">
-              <Stat k="−$0.42M" v="Maverick spend" />
+              <Stat k="−₹ 3.35 Cr" v="Maverick spend" />
               <Stat k="+2.1d" v="Faster PO cycle" />
             </div>
           </Card>
