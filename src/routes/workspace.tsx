@@ -2,6 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { FileText, ShoppingCart, PackageCheck, Receipt, Banknote, Users, ArrowRight, CheckCircle2 } from "lucide-react";
 import { AppShell } from "@/components/AppShell";
 import { PageHeader } from "@/components/PageHeader";
+import { KPI } from "@/lib/constants";
 
 export const Route = createFileRoute("/workspace")({
   head: () => ({ meta: [{ title: "Procurement Workspace · Procurement Copilot" }] }),
@@ -9,12 +10,12 @@ export const Route = createFileRoute("/workspace")({
 });
 
 const STEPS = [
-  { icon: Users, name: "Vendor Master", desc: "Onboarding, qualification and master-data governance.", count: "1,284 vendors" },
+  { icon: Users, name: "Vendor Master", desc: "Onboarding, qualification and master-data governance.", count: `${KPI.suppliers} vendors` },
   { icon: FileText, name: "Purchase Requisition", desc: "Demand intake, approvals, budget checks.", count: "832 open" },
-  { icon: ShoppingCart, name: "Purchase Order", desc: "PO creation, framework agreements, sourcing events.", count: "1,209 active" },
-  { icon: PackageCheck, name: "Goods Receipt", desc: "Receipt confirmation, quality inspection.", count: "97.4% on time" },
-  { icon: Receipt, name: "Invoice", desc: "3-way match, exception handling, posting.", count: "2.1% blocked" },
-  { icon: Banknote, name: "Payment", desc: "Payment runs, discount capture, cash forecasting.", count: "$4.6M last run" },
+  { icon: ShoppingCart, name: "Purchase Order", desc: "PO creation, framework agreements, sourcing events.", count: `${KPI.purchaseOrders.toLocaleString("en-IN")} active` },
+  { icon: PackageCheck, name: "Goods Receipt", desc: "Receipt confirmation, quality inspection.", count: `${KPI.onTimeDeliveryPct}% on time` },
+  { icon: Receipt, name: "Invoice", desc: "3-way match, exception handling, posting.", count: `${KPI.invoiceMatchPct}% matched` },
+  { icon: Banknote, name: "Payment", desc: "Payment runs, discount capture, cash forecasting.", count: `${KPI.monthlyRunRate}/month` },
 ];
 
 function WorkspacePage() {
