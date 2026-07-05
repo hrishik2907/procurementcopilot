@@ -3,8 +3,9 @@ import { Sparkles, LayoutDashboard, ArrowRight, Github, CheckCircle2 } from "luc
 import { AppShell } from "@/components/AppShell";
 import { WelcomeModal } from "@/components/WelcomeModal";
 import { Footer } from "@/components/Footer";
+import { OWNER, KPI } from "@/lib/constants";
 
-const GITHUB_URL = "https://github.com/hrishik2907";
+const GITHUB_URL = OWNER.github;
 
 export const Route = createFileRoute("/")({
   head: () => ({
