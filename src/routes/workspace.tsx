@@ -2,6 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { FileText, ShoppingCart, PackageCheck, Receipt, Banknote, Users, ArrowRight, CheckCircle2 } from "lucide-react";
 import { AppShell } from "@/components/AppShell";
 import { PageHeader } from "@/components/PageHeader";
+import { KPI } from "@/lib/constants";
 
 export const Route = createFileRoute("/workspace")({
   head: () => ({ meta: [{ title: "Procurement Workspace · Procurement Copilot" }] }),
@@ -9,12 +10,12 @@ export const Route = createFileRoute("/workspace")({
 });
 
 const STEPS = [
-  { icon: Users, name: "Vendor Master", desc: "Onboarding, qualification and master-data governance.", count: "1,284 vendors" },
+  { icon: Users, name: "Vendor Master", desc: "Onboarding, qualification and master-data governance.", count: `${KPI.suppliers} vendors` },
   { icon: FileText, name: "Purchase Requisition", desc: "Demand intake, approvals, budget checks.", count: "832 open" },
-  { icon: ShoppingCart, name: "Purchase Order", desc: "PO creation, framework agreements, sourcing events.", count: "1,209 active" },
-  { icon: PackageCheck, name: "Goods Receipt", desc: "Receipt confirmation, quality inspection.", count: "97.4% on time" },
-  { icon: Receipt, name: "Invoice", desc: "3-way match, exception handling, posting.", count: "2.1% blocked" },
-  { icon: Banknote, name: "Payment", desc: "Payment runs, discount capture, cash forecasting.", count: "$4.6M last run" },
+  { icon: ShoppingCart, name: "Purchase Order", desc: "PO creation, framework agreements, sourcing events.", count: `${KPI.purchaseOrders.toLocaleString("en-IN")} active` },
+  { icon: PackageCheck, name: "Goods Receipt", desc: "Receipt confirmation, quality inspection.", count: `${KPI.onTimeDeliveryPct}% on time` },
+  { icon: Receipt, name: "Invoice", desc: "3-way match, exception handling, posting.", count: `${KPI.invoiceMatchPct}% matched` },
+  { icon: Banknote, name: "Payment", desc: "Payment runs, discount capture, cash forecasting.", count: `${KPI.monthlyRunRate}/month` },
 ];
 
 function WorkspacePage() {
@@ -45,18 +46,18 @@ function WorkspacePage() {
 
         <div className="mt-6 grid gap-4 lg:grid-cols-3">
           <Health title="Process health" pct={92} sub="Above target (90%)" />
-          <Health title="On-time delivery" pct={97} sub="EMEA avg" tone="ok" />
-          <Health title="Invoice match rate" pct={87} sub="3-way matching" tone="warn" />
+          <Health title="On-time delivery" pct={Math.round(KPI.onTimeDeliveryPct)} sub="Dataset average" tone="ok" />
+          <Health title="Invoice match rate" pct={Math.round(KPI.invoiceMatchPct)} sub="3-way matching" tone="warn" />
         </div>
 
         <div className="mt-6 rounded-2xl border border-border bg-card p-5 shadow-soft">
           <div className="text-sm font-semibold">Recent activity</div>
           <div className="mt-4 divide-y divide-border">
             {[
-              ["PO-48201 issued", "Vertex IT Services · $42,500", "2 min ago"],
-              ["GR-19844 posted", "Helix Logistics · 12 lines", "18 min ago"],
+              ["PO-48201 issued", "Infosys · ₹ 42.5 Lakh", "2 min ago"],
+              ["GR-19844 posted", "Mahindra Logistics · 12 lines", "18 min ago"],
               ["Invoice INV-2298 blocked", "Price variance > 5%", "1 hr ago"],
-              ["Framework renewed", "Acme Industrial · 24-month term", "Today"],
+              ["Framework renewed", "Tata Steel · 24-month term", "Today"],
             ].map(([a, b, c]) => (
               <div key={a} className="flex items-center justify-between gap-4 py-3 text-sm">
                 <div className="flex items-center gap-3">

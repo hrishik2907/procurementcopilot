@@ -1,8 +1,9 @@
 import { useEffect, useState } from "react";
-import { Sparkles, CheckCircle2, Github, ArrowRight, ShieldCheck, Database, Layers, Cpu } from "lucide-react";
+import { Sparkles, Github, ArrowRight, ShieldCheck, Cpu } from "lucide-react";
 import { markDatasetLoaded, useDatasetLoaded } from "@/lib/dataset-store";
+import { OWNER, KPI } from "@/lib/constants";
 
-const GITHUB_URL = "#"; // TODO: replace with real repo URL
+const GITHUB_URL = OWNER.github;
 
 export function WelcomeModal() {
   const { loaded, setDatasetLoaded } = useDatasetLoaded();
@@ -50,7 +51,7 @@ export function WelcomeModal() {
         {/* Details */}
         <div className="px-8 py-6">
           <div className="grid grid-cols-2 gap-3">
-            <Info label="Workspace" value="Acme Industries" />
+            <Info label="Portfolio" value="Enterprise Analytics" />
             <Info
               label="Status"
               value={

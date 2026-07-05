@@ -3,8 +3,9 @@ import { Sparkles, LayoutDashboard, ArrowRight, Github, CheckCircle2 } from "luc
 import { AppShell } from "@/components/AppShell";
 import { WelcomeModal } from "@/components/WelcomeModal";
 import { Footer } from "@/components/Footer";
+import { OWNER, KPI } from "@/lib/constants";
 
-const GITHUB_URL = "https://github.com/hrishik2907";
+const GITHUB_URL = OWNER.github;
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -98,6 +99,37 @@ function Home() {
               <CheckCircle2 className="h-3.5 w-3.5 text-success" /> AI-powered decision support
             </div>
           </div>
+        </div>
+      </section>
+
+      <section className="mx-auto max-w-5xl px-4 pb-16 sm:px-6 lg:px-8">
+        <div className="rounded-3xl border border-border bg-card p-8 shadow-soft transition hover:shadow-elevated">
+          <div className="flex items-center justify-between gap-4">
+            <div>
+              <div className="text-[11px] font-semibold uppercase tracking-[0.2em] text-muted-foreground">Project highlights</div>
+              <h2 className="mt-1 text-xl font-semibold tracking-tight">What this portfolio demonstrates</h2>
+            </div>
+            <div className="hidden text-right text-xs text-muted-foreground sm:block">
+              {KPI.records.toLocaleString("en-IN")} records · {KPI.tables} tables · {KPI.fyRange}
+            </div>
+          </div>
+          <ul className="mt-5 grid gap-2.5 sm:grid-cols-2">
+            {[
+              "Cleaned procurement data using SQL",
+              "Built ETL pipelines with PySpark",
+              "Designed a Power BI data model",
+              "Developed advanced DAX KPIs",
+              "Created executive procurement dashboards",
+              "Built the Jarvis AI procurement analyst",
+              "Developed this React portfolio application",
+              "Published complete source code on GitHub",
+            ].map((h) => (
+              <li key={h} className="flex items-start gap-2 rounded-xl border border-border bg-surface p-3 text-sm">
+                <CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0 text-success" />
+                <span>{h}</span>
+              </li>
+            ))}
+          </ul>
         </div>
       </section>
 
