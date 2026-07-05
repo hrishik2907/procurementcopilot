@@ -33,10 +33,10 @@ function RiskPage() {
       <div className="mx-auto max-w-7xl space-y-6 px-4 py-6 sm:px-6 lg:px-8">
         <div className="grid grid-cols-2 gap-4 lg:grid-cols-4">
           {[
-            { i: ShieldAlert, k: "High risk", v: 1, tone: "bad" },
-            { i: AlertTriangle, k: "Medium risk", v: 7, tone: "warn" },
-            { i: ShieldCheck, k: "Low risk", v: 1276, tone: "ok" },
-            { i: Globe2, k: "Regions monitored", v: 12, tone: "neutral" },
+            { i: ShieldAlert, k: "High risk suppliers", v: KPI.highRiskSuppliers, tone: "bad" },
+            { i: AlertTriangle, k: "Medium risk suppliers", v: KPI.mediumRiskSuppliers, tone: "warn" },
+            { i: ShieldCheck, k: "Low risk suppliers", v: KPI.lowRiskSuppliers, tone: "ok" },
+            { i: Globe2, k: "Categories monitored", v: KPI.categories, tone: "neutral" },
           ].map((s) => (
             <div key={s.k} className="rounded-2xl border border-border bg-card p-5 shadow-soft">
               <div className="flex items-center gap-2 text-xs text-muted-foreground"><s.i className="h-4 w-4" /> {s.k}</div>
