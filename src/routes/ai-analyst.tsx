@@ -21,12 +21,12 @@ const SUGGESTIONS = [
 const SAMPLE = `Maverick spend rose by 1.9% in October, driven primarily by IT Services (+4.2%).
 
 Root cause analysis:
-• 14 off-contract POs were raised against Vertex IT Services, bypassing the preferred-supplier framework.
+• 14 off-contract POs were raised against Infosys, bypassing the preferred-supplier framework.
 • 9 of these POs originated from the Engineering cost center after the framework agreement expired on Oct 3.
 • Approval thresholds were not updated, allowing requisitions under ₹ 20 Lakh to skip category-manager review.
 
 Recommended actions:
-1. Renew the Vertex framework agreement (saving an estimated ₹ 2.48 Cr annually vs spot rates).
+1. Renew the Infosys framework agreement (saving an estimated ₹ 2.48 Cr annually vs spot rates).
 2. Lower auto-approval threshold for IT Services to ₹ 8 Lakh until the contract is in place.
 3. Notify the 6 requisitioners with off-contract activity and route future POs via the catalog.
 
@@ -138,16 +138,16 @@ function AnalystPage() {
           </Card>
           <Card icon={Lightbulb} title="Jarvis recommendations today">
             <ul className="mt-2 space-y-2 text-xs text-muted-foreground">
-              <li className="flex gap-2"><span className="mt-1 h-1.5 w-1.5 shrink-0 rounded-full bg-accent" />Renew Vertex IT framework — save ~₹ 2.48 Cr/yr</li>
+              <li className="flex gap-2"><span className="mt-1 h-1.5 w-1.5 shrink-0 rounded-full bg-accent" />Renew Infosys IT framework — save ~₹ 2.48 Cr/yr</li>
               <li className="flex gap-2"><span className="mt-1 h-1.5 w-1.5 shrink-0 rounded-full bg-accent" />Consolidate 3 logistics suppliers into 1</li>
               <li className="flex gap-2"><span className="mt-1 h-1.5 w-1.5 shrink-0 rounded-full bg-accent" />Lower IT auto-approval threshold to ₹ 8 Lakh</li>
             </ul>
           </Card>
           <Card icon={ShieldAlert} title="Jarvis watchlist">
             <div className="mt-2 space-y-2 text-xs">
-              <Row k="Vertex IT Services" v="High" tone="bad" />
-              <Row k="Helix Logistics" v="Medium" tone="warn" />
-              <Row k="Northwind Materials" v="Low" tone="ok" />
+              <Row k="Infosys" v="High" tone="bad" />
+              <Row k="Mahindra Logistics" v="Medium" tone="warn" />
+              <Row k="Tata Steel" v="Low" tone="ok" />
             </div>
           </Card>
           <Card icon={TrendingDown} title="Estimated impact">
