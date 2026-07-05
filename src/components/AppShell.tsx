@@ -96,7 +96,7 @@ export function AppShell({ children }: { children: ReactNode }) {
                 <div className="flex h-7 w-7 items-center justify-center rounded-full bg-accent text-[11px] font-semibold text-accent-foreground">HM</div>
                 <div className="text-xs leading-tight">
                   <div className="font-medium">Hrishik Marfatia</div>
-                  <div className="text-muted-foreground">Procurement Analyst</div>
+                  <div className="text-muted-foreground">Business Analytics · Portfolio</div>
                 </div>
               </div>
             </div>
