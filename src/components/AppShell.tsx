@@ -65,9 +65,9 @@ export function AppShell({ children }: { children: ReactNode }) {
           <div className="rounded-xl border border-border bg-card p-3">
             <div className="flex items-center gap-2 text-xs font-medium">
               <span className="inline-block h-2 w-2 rounded-full bg-success" />
-              Workspace: <span className="text-muted-foreground">Acme Industries</span>
+              Dataset: <span className="text-muted-foreground">Procurement FY24–26</span>
             </div>
-            <div className="mt-1 text-[11px] text-muted-foreground">FY 2026 · EMEA</div>
+            <div className="mt-1 text-[11px] text-muted-foreground">5,248 records · 12 tables</div>
           </div>
         </div>
       </aside>
