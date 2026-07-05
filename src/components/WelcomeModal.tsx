@@ -51,7 +51,7 @@ export function WelcomeModal() {
         {/* Details */}
         <div className="px-8 py-6">
           <div className="grid grid-cols-2 gap-3">
-            <Info label="Workspace" value="Acme Industries" />
+            <Info label="Portfolio" value="Enterprise Analytics" />
             <Info
               label="Status"
               value={
