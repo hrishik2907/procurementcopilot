@@ -22,8 +22,9 @@ export const Route = createFileRoute("/dashboard")({
   component: DashboardPage,
 });
 
-const GITHUB_URL = "https://github.com/hrishik2907";
-const POWER_BI_OPEN_URL = "#";
+import { OWNER } from "@/lib/constants";
+const GITHUB_URL = OWNER.github;
+const POWER_BI_OPEN_URL = OWNER.github;
 
 const TECH_BADGES = ["SQL", "PySpark", "Power BI", "Power Query", "DAX"];
 
