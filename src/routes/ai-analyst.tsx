@@ -1,6 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useEffect, useRef, useState } from "react";
-import { Sparkles, Send, User, Brain, Lightbulb, TrendingDown, ShieldAlert } from "lucide-react";
+import { Sparkles, Send, User, Brain, Lightbulb, TrendingDown, ShieldAlert, CheckCircle2, Database } from "lucide-react";
 import { AppShell } from "@/components/AppShell";
 import { PageHeader } from "@/components/PageHeader";
 
@@ -12,10 +12,25 @@ export const Route = createFileRoute("/ai-analyst")({
 type Msg = { role: "user" | "ai"; text: string; typing?: boolean };
 
 const SUGGESTIONS = [
-  "Why did maverick spend increase last month?",
-  "Which suppliers are at highest risk of disruption?",
-  "Explain the rise in IT Services costs in Q4.",
-  "Suggest 3 actions to reduce PO cycle time.",
+  "Why did IT spend increase this quarter?",
+  "Which suppliers require executive attention?",
+  "Show procurement savings opportunities.",
+  "Which departments exceeded budget?",
+  "Explain supplier concentration risk.",
+  "Find delayed purchase orders.",
+  "Which vendors have highest invoice mismatch?",
+  "Show contract renewals due this quarter.",
+];
+
+const CAPABILITIES = [
+  "Procurement Analytics",
+  "Root Cause Analysis",
+  "Supplier Intelligence",
+  "Risk Detection",
+  "Executive Reporting",
+  "Cost Saving Recommendations",
+  "Natural Language Querying",
+  "Procurement KPI Explanation",
 ];
 
 const SAMPLE = `Maverick spend rose by 1.9% in October, driven primarily by IT Services (+4.2%).
