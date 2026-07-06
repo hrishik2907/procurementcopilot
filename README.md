@@ -1,377 +1,407 @@
 # 🚀 Procurement Copilot
-
 ### Enterprise Procurement Analytics Platform | SQL • PySpark • Power BI • React • AI
 
-> An end-to-end Business Analytics portfolio project demonstrating how enterprise procurement data is transformed into executive insights through SQL, PySpark, Power BI, React, and an AI-powered analytics assistant named **Jarvis**.
+<p align="center">
+
+![SQL](https://img.shields.io/badge/SQL-Data%20Engineering-blue?style=for-the-badge)
+![PySpark](https://img.shields.io/badge/PySpark-ETL-orange?style=for-the-badge)
+![Power BI](https://img.shields.io/badge/Power%20BI-Dashboard-yellow?style=for-the-badge)
+![React](https://img.shields.io/badge/React-Frontend-61DAFB?style=for-the-badge)
+![AI](https://img.shields.io/badge/AI-Jarvis-success?style=for-the-badge)
+
+</p>
 
 ---
 
-## 🌐 Live Demo
+# 🌐 Live Demo
 
-🔗 **Website:** https://procurementcopilot.vercel.app
+### 🔗 Website
+procurementcopilot.vercel.app
+
+### 💻 GitHub Repository
+https://github.com/hrishik2907
 
 ---
 
 # 📌 Project Overview
 
-Procurement Copilot is a complete enterprise analytics platform built to simulate how modern organizations analyze procurement operations.
+Procurement Copilot is an enterprise procurement analytics platform that demonstrates the complete analytics lifecycle—from raw business data to executive decision making.
 
-This project demonstrates the complete analytics lifecycle—from raw procurement transactions to executive decision-making.
+Unlike a traditional dashboard project, this application simulates how modern organizations interact with procurement data through an integrated analytics workspace combining:
 
-The platform includes:
+- SQL data preparation
+- PySpark ETL pipelines
+- Power BI executive dashboards
+- AI-powered business explanations
+- Interactive React application
 
-- Executive Power BI Dashboards
-- SQL Data Analysis
-- PySpark ETL Pipelines
-- AI Procurement Analyst (Jarvis)
-- Supplier Risk Intelligence
+The goal of this project is to showcase how business intelligence, data engineering, and AI can work together inside one enterprise platform.
+
+---
+
+# 📢 Demo Notice
+
+This project is built as a portfolio demonstration.
+
+The procurement dataset is a sample enterprise procurement dataset used for demonstration purposes.
+
+The **Power BI dashboards were personally designed and developed by me** to showcase enterprise reporting, KPI design, procurement analytics, and business intelligence best practices.
+
+The React website acts as an enterprise analytics portal that integrates those dashboards together with AI-powered insights.
+
+---
+
+# 💡 What This Platform Does
+
+Instead of simply displaying dashboards, Procurement Copilot simulates how an enterprise analytics application works.
+
+A recruiter can experience the complete analytics workflow from importing data to receiving AI-driven recommendations.
+
+---
+
+# ⚙️ How the Platform Works
+
+## Step 1 — Enterprise Dataset
+
+The application starts with an enterprise procurement dataset containing:
+
+- Procurement transactions
+- Vendors
+- Purchase Orders
+- Invoices
+- Payments
+- Contracts
+- Budgets
+- Supplier Risks
+
+For demonstration purposes, the dataset is already connected so recruiters can immediately explore the platform.
+
+---
+
+## Step 2 — Analytics Generation
+
+Once the dataset is available, the platform automatically provides:
+
+- Executive KPIs
+- Procurement metrics
+- Supplier analytics
+- Budget utilization
+- Contract analysis
+- Spend trends
+- Risk monitoring
+
+Instead of manually analyzing spreadsheets, users immediately receive an executive analytics experience.
+
+---
+
+## Step 3 — Interactive Power BI Dashboards
+
+The website embeds enterprise Power BI dashboards built specifically for this project.
+
+The dashboards include:
+
+- Executive Overview
+- Procurement Analytics
+- Vendor Analysis
+- Spend Trends
+- Category Analysis
+- Supplier Risk
+- Budget Utilization
+
+These dashboards demonstrate how business intelligence can be embedded inside enterprise software.
+
+---
+
+## Step 4 — Jarvis AI Analyst
+
+The platform includes an AI assistant named **Jarvis**.
+
+Rather than simply showing charts, Jarvis explains business problems in plain English.
+
+Users can ask questions like:
+
+- Why did procurement spend increase?
+- Which suppliers require attention?
+- Which departments exceeded budget?
+- What risks should executives prioritize?
+- What actions should reduce procurement cost?
+
+This demonstrates how AI can transform dashboards into decision-support systems.
+
+---
+
+## Step 5 — Procurement Workspace
+
+The application also visualizes the complete Procure-to-Pay process.
+
+- Vendor Management
+- Purchase Requisition
+- Purchase Orders
+- Goods Receipt
+- Invoice Matching
+- Payments
+- Risk Monitoring
 - Executive Reporting
-- Interactive Procurement Workspace
-- Enterprise Dataset Explorer
-- React Frontend
 
-Unlike a traditional dashboard project, Procurement Copilot combines multiple technologies into one integrated analytics platform.
+This helps users understand where analytics fits within procurement operations.
 
 ---
 
-# 🛠 Tech Stack
+# 🛠 Technology Stack
 
-| Category | Technologies |
-|-----------|-------------|
-| Frontend | React, TypeScript, Tailwind CSS |
-| BI | Power BI |
-| Data Processing | SQL, PySpark |
-| Data Transformation | Power Query |
-| Analytics | DAX |
-| AI Layer | Jarvis AI Procurement Analyst |
+| Layer | Technology |
+|---------|------------|
+| Frontend | React + TypeScript |
+| Styling | Tailwind CSS |
+| ETL | PySpark |
+| Data Cleaning | SQL |
+| Data Modeling | Power Query |
+| Semantic Model | DAX |
+| Visualization | Power BI |
+| AI Layer | Jarvis AI Analyst |
 | Deployment | Vercel |
-| Version Control | Git & GitHub |
+| Version Control | GitHub |
 
 ---
 
-# 📊 Enterprise Architecture
+# 🏗 Architecture
 
 ```
-Enterprise Procurement Dataset
-            │
-            ▼
-        SQL Cleaning
-            │
-            ▼
-      PySpark ETL Pipeline
-            │
-            ▼
-     Power Query Transformations
-            │
-            ▼
-     Power BI Semantic Model
-            │
-            ▼
-        DAX Measures
-            │
-            ▼
- Executive Dashboards
-            │
-            ▼
-      React Web Application
-            │
-            ▼
- Jarvis AI Procurement Analyst
+Enterprise Dataset
+        │
+        ▼
+SQL Cleaning
+        │
+        ▼
+PySpark ETL
+        │
+        ▼
+Power Query
+        │
+        ▼
+Power BI Semantic Model
+        │
+        ▼
+Executive Dashboards
+        │
+        ▼
+React Analytics Platform
+        │
+        ▼
+Jarvis AI Analyst
 ```
 
 ---
 
-# 🖥 Home Page
+# ✨ Key Features
 
-The landing page introduces the Procurement Copilot platform and provides quick access to dashboards, source code, and the AI assistant.
+✔ Enterprise Procurement Dashboard
+
+✔ Executive KPI Reporting
+
+✔ AI Procurement Analyst
+
+✔ Supplier Risk Center
+
+✔ Procurement Workspace
+
+✔ Executive Report Generator
+
+✔ Dataset Explorer
+
+✔ Interactive Power BI Integration
+
+✔ Business Process Visualization
+
+✔ Responsive Enterprise UI
+
+---
+
+# 📷 Application Screenshots
+
+## 🏠 Home
 
 ![Home](Assets/home.png)
 
 ---
 
-# 📈 Enterprise Analytics Dashboard
-
-Executive dashboard built in Power BI providing procurement KPIs including:
-
-- Total Spend
-- Suppliers
-- Purchase Orders
-- Contract Value
-- Risk Score
-- Budget Utilization
+## 📊 Analytics Dashboard
 
 ![Dashboard](Assets/dashboard.png)
 
 ---
 
-# 📊 Power BI Reports
-
-The application includes two enterprise Power BI dashboards.
-
-### Executive Overview
-
-Focuses on:
-
-- Procurement Spend
-- Vendor Analysis
-- Category Spend
-- Monthly Trends
+## 📈 Executive Overview Dashboard
 
 ![Executive Overview](Assets/Executive_overview.png)
 
 ---
 
-### Procurement Analytics
-
-Provides detailed procurement insights including:
-
-- Budget vs Actual Spend
-- Supplier Risk
-- Contract Status
-- Vendor Intelligence
+## 📉 Procurement Analytics Dashboard
 
 ![Procurement Analytics](Assets/procurement-analysis.png)
 
 ---
 
-# 🤖 Jarvis AI Procurement Analyst
-
-Jarvis is an AI-powered procurement analyst capable of answering business questions using the enterprise dataset.
-
-Capabilities include:
-
-- Procurement Analytics
-- Root Cause Analysis
-- Supplier Intelligence
-- Risk Detection
-- Executive Reporting
-- Cost Saving Recommendations
-- KPI Explanations
+## 🤖 Jarvis AI Analyst
 
 ![Jarvis](Assets/jarvis.png)
 
 ---
 
-# 🔄 Procurement Workspace
-
-The Procurement Workspace visualizes the complete Procure-to-Pay lifecycle.
-
-Features include:
-
-- Vendor Management
-- Purchase Requisitions
-- Purchase Orders
-- Goods Receipt
-- Invoice Matching
-- Payment Processing
+## 🏢 Procurement Workspace
 
 ![Workspace](Assets/workspace.png)
 
 ---
 
-# ⚠ Risk Center
-
-Interactive supplier risk monitoring dashboard.
-
-Features include:
-
-- Supplier Risk Register
-- Contract Renewal Alerts
-- Compliance Monitoring
-- Critical Vendor Tracking
-- AI Risk Explanations
+## ⚠ Risk Center
 
 ![Risk Center](Assets/risk-center.png)
 
 ---
 
-# 📑 Executive Reports
+## 📄 Executive Reports
 
-AI-generated executive reports summarize procurement performance and provide recommendations for leadership.
-
-Features:
-
-- Procurement Health Score
-- Savings Opportunities
-- Budget Utilization
-- Risk Exposure
-- PDF Export
-
-![Executive Reports](Assets/reports.png)
+![Reports](Assets/reports.png)
 
 ---
 
-# 🗃 Dataset Explorer
-
-Interactive dataset browser containing procurement records.
-
-Features include:
-
-- Search
-- Filtering
-- Department Analysis
-- Risk Filters
-- Spend Analysis
+## 🗄 Dataset Explorer
 
 ![Dataset](Assets/dataset.png)
 
----
-
-## Dataset Records
-
-The enterprise dataset contains procurement transactions across multiple business tables.
-
-![Dataset Records](Assets/dataset2.png)
+![Dataset Table](Assets/dataset2.png)
 
 ---
 
-# ℹ About
-
-The About page explains the complete analytics lifecycle behind the project.
-
-Topics covered include:
-
-- SQL Cleaning
-- PySpark Processing
-- Power Query
-- Power BI
-- DAX
-- React
-- AI Integration
+## ℹ About
 
 ![About](Assets/about.png)
 
 ---
 
-# 👤 Profile
-
-Portfolio page highlighting project ownership, technology stack, and professional information.
+## 👤 Profile
 
 ![Profile](Assets/profile.png)
 
 ---
 
-# 📂 Project Features
-
-✅ Enterprise Procurement Dataset
-
-✅ SQL Analysis
-
-✅ PySpark ETL
-
-✅ Power Query
-
-✅ Power BI Dashboard
-
-✅ DAX Measures
-
-✅ React Frontend
-
-✅ AI Procurement Assistant
-
-✅ Supplier Risk Engine
-
-✅ Executive Reporting
-
-✅ Dataset Explorer
-
-✅ Responsive UI
-
----
-
-# 📈 Dataset Statistics
-
-| Metric | Value |
-|---------|------:|
-| Records | 5,248 |
-| Connected Tables | 12 |
-| Suppliers | 300 |
-| Purchase Orders | 1,209 |
-| Contracts | ₹170.42 Cr |
-| Total Spend | ₹351.05 Cr |
-
----
-
-# 🚀 Running Locally
-
-Clone the repository
-
-```bash
-git clone https://github.com/hrishik2907/procurementcopilot.git
-```
-
-Navigate into the project
-
-```bash
-cd procurementcopilot
-```
-
-Install dependencies
-
-```bash
-npm install
-```
-
-Run the development server
-
-```bash
-npm run dev
-```
-
----
-
-# 📁 Repository Structure
+# 📂 Project Structure
 
 ```
-procurementcopilot
+procurementcopilot/
+
 │
+
 ├── Assets/
-├── public/
+│ ├── Screenshots
+│
+
 ├── src/
+│ ├── Components
+│ ├── Pages
+│ ├── Hooks
+│ ├── Data
+│
+
+├── public/
+
 ├── package.json
+
 ├── vite.config.ts
+
 └── README.md
 ```
 
 ---
 
-# 🎯 Learning Outcomes
+# 📊 Business Analytics Covered
 
-This project demonstrates practical experience with:
+This project demonstrates:
+
+- Executive Reporting
+- Procurement Analytics
+- Vendor Performance Analysis
+- Budget Tracking
+- Category Spend Analysis
+- Supplier Risk Management
+- Procurement KPI Design
+- Business Intelligence
+- Data Storytelling
+
+---
+
+# 💻 Technical Skills Demonstrated
+
+### Data Engineering
 
 - SQL
 - PySpark
+- ETL Pipelines
+- Data Cleaning
+- Data Transformation
+
+### Business Intelligence
+
 - Power BI
 - Power Query
 - DAX
+- KPI Design
+- Dashboard Development
+
+### Frontend
+
 - React
 - TypeScript
+- Tailwind CSS
+
+### Analytics
+
+- Procurement Analytics
+- Executive Reporting
+- Business Insights
 - Data Visualization
-- Business Analytics
-- Enterprise Dashboard Design
-- Data Engineering
-- AI-assisted Analytics
+
+---
+
+# 🚀 Future Improvements
+
+- Live database integration
+- Authentication
+- User roles
+- AI-powered report generation
+- Predictive procurement forecasting
+- Supplier recommendation engine
+- Real-time Power BI embedding
+- Cloud database support
 
 ---
 
 # 👨‍💻 Author
 
-**Hrishik Marfatia**
+## Hrishik Marfatia
 
 Business Analytics Graduate Student
 
 University of New Haven
 
-📧 marfatiahrishik03@gmail.com
+### GitHub
 
-🔗 LinkedIn: https://www.linkedin.com/in/hrishik-marfatia
+https://github.com/hrishik2907
 
-💻 GitHub: https://github.com/hrishik2907
+### LinkedIn
+
+https://www.linkedin.com/in/hrishik-marfatia-199059233/
 
 ---
 
-# ⭐ If you found this project interesting
+# ⭐ If you enjoyed this project
 
-Please consider giving the repository a ⭐ on GitHub.
+Please consider giving this repository a ⭐.
 
-It helps others discover the project and supports my work.
+It helps recruiters and visitors discover the project.
+
+---
+
+## Thank you for visiting Procurement Copilot!
