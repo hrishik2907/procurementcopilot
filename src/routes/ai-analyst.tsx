@@ -49,7 +49,11 @@ Estimated impact: −₹ 3.35 Cr run-rate maverick spend, +2.1 days faster PO cy
 
 function AnalystPage() {
   const [messages, setMessages] = useState<Msg[]>([
-    { role: "ai", text: "Hi Hrishik — Jarvis here. I've ingested your FY2024–FY2026 procurement dataset (5,248 rows across 12 tables). Ask me anything about spend, suppliers, contracts or risk." },
+    {
+      role: "ai",
+      text:
+        "Hello Hrishik.\n\nI've analyzed your enterprise procurement dataset containing 5,248 business transactions across 12 connected tables.\n\nI can explain procurement trends, identify supplier risks, analyze spending patterns, detect procurement bottlenecks, recommend savings opportunities and answer questions grounded entirely in your enterprise dataset.",
+    },
   ]);
   const [input, setInput] = useState("");
   const [busy, setBusy] = useState(false);
