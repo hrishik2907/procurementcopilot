@@ -82,6 +82,45 @@ function ProfilePage() {
           </p>
         </div>
 
+        {/* Professional Summary + Skills + Competencies + Education */}
+        <div className="grid gap-4 lg:grid-cols-3">
+          <Block title="Professional Summary" className="lg:col-span-3">
+            Business analytics professional focused on end-to-end BI delivery — from SQL data engineering
+            and PySpark ETL through Power BI semantic modelling, DAX and AI-driven decision support.
+            Passionate about building analytics products that leaders actually use.
+          </Block>
+          <Block title="Technical Skills">
+            <SkillGroup title="Data" items={["SQL", "PySpark", "Power Query", "Python"]} />
+            <SkillGroup title="BI" items={["Power BI", "DAX", "Semantic Modelling", "Power BI Service"]} />
+            <SkillGroup title="Frontend" items={["React", "TypeScript", "Tailwind"]} />
+            <SkillGroup title="AI" items={["LLM Reasoning", "Prompt Design", "Grounded Analytics"]} />
+          </Block>
+          <Block title="Core Competencies">
+            <ul className="space-y-1.5 text-sm">
+              {[
+                "Data Engineering",
+                "PySpark ETL",
+                "Power BI Reporting",
+                "Executive Analytics",
+                "AI-enabled Business Intelligence",
+                "Business Decision Support",
+              ].map((c) => (
+                <li key={c} className="flex items-center gap-2"><Award className="h-3.5 w-3.5 text-accent-foreground" />{c}</li>
+              ))}
+            </ul>
+          </Block>
+          <Block title="Education & Highlights">
+            <div className="text-sm font-semibold">Business Analytics — Graduate Study</div>
+            <div className="text-xs text-muted-foreground">Focus: Data Engineering · BI · Applied AI</div>
+            <div className="mt-3 text-[11px] font-semibold uppercase tracking-wider text-muted-foreground">Project Highlights</div>
+            <ul className="mt-2 space-y-1 text-xs">
+              <li>• End-to-end procurement analytics platform</li>
+              <li>• {KPI.records.toLocaleString("en-IN")} records · {KPI.tables} connected tables</li>
+              <li>• Jarvis AI analyst grounded on curated measures</li>
+            </ul>
+          </Block>
+        </div>
+
         <div className="grid gap-4 sm:grid-cols-3">
           <a
             href={OWNER.github}
