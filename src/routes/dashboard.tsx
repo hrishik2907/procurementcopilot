@@ -224,3 +224,44 @@ function MetaTile({ icon, label, value }: { icon: React.ReactNode; label: string
     </div>
   );
 }
+
+function SectionHeading({ eyebrow, title }: { eyebrow: string; title: string }) {
+  return (
+    <div>
+      <div className="text-[11px] font-semibold uppercase tracking-[0.22em] text-muted-foreground">{eyebrow}</div>
+      <h2 className="mt-1 text-xl font-semibold tracking-tight sm:text-2xl">{title}</h2>
+    </div>
+  );
+}
+
+function KPI_Tile({ label, value, tone }: { label: string; value: string; tone?: "ok" | "warn" }) {
+  const ring =
+    tone === "ok"
+      ? "ring-1 ring-success/30 bg-success/5"
+      : tone === "warn"
+      ? "ring-1 ring-warning/30 bg-warning/5"
+      : "ring-1 ring-border";
+  return (
+    <div className={`rounded-2xl border border-border bg-card p-4 shadow-soft transition hover:-translate-y-0.5 hover:shadow-elevated ${ring}`}>
+      <div className="text-[11px] font-medium uppercase tracking-wider text-muted-foreground">{label}</div>
+      <div className="mt-1 text-lg font-semibold tracking-tight">{value}</div>
+    </div>
+  );
+}
+
+function AnswerCard({ title, items }: { title: string; items: string[] }) {
+  return (
+    <div className="rounded-2xl border border-border bg-card p-6 shadow-soft transition hover:-translate-y-0.5 hover:shadow-elevated">
+      <div className="text-sm font-semibold">{title}</div>
+      <div className="mt-1 text-[11px] font-medium uppercase tracking-wider text-muted-foreground">What this dashboard answers</div>
+      <ul className="mt-4 grid gap-2 sm:grid-cols-2">
+        {items.map((i) => (
+          <li key={i} className="flex items-start gap-2 rounded-xl border border-border bg-surface p-3 text-sm">
+            <span className="mt-1 h-1.5 w-1.5 shrink-0 rounded-full bg-accent" />
+            <span>{i}</span>
+          </li>
+        ))}
+      </ul>
+    </div>
+  );
+}
