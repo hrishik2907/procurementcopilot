@@ -197,6 +197,28 @@ function AnalystPage() {
             </div>
           </Card>
         </div>
+
+        {/* Popular Business Questions */}
+        <div className="lg:col-span-12">
+          <div className="rounded-2xl border border-border bg-card p-6 shadow-soft">
+            <div className="flex items-center gap-2">
+              <Sparkles className="h-4 w-4 text-accent" />
+              <div className="text-sm font-semibold">Popular Business Questions</div>
+            </div>
+            <div className="mt-4 grid gap-2 sm:grid-cols-2 lg:grid-cols-4">
+              {SUGGESTIONS.map((s) => (
+                <button
+                  key={s}
+                  onClick={() => send(s)}
+                  className="group flex items-start gap-2 rounded-xl border border-border bg-surface p-3 text-left text-xs transition hover:-translate-y-0.5 hover:border-foreground/20 hover:bg-card hover:shadow-soft"
+                >
+                  <Sparkles className="mt-0.5 h-3.5 w-3.5 shrink-0 text-accent" />
+                  <span>{s}</span>
+                </button>
+              ))}
+            </div>
+          </div>
+        </div>
       </div>
     </AppShell>
   );
