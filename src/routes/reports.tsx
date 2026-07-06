@@ -157,3 +157,13 @@ function ReportsPage() {
     </AppShell>
   );
 }
+
+function SummaryTile({ label, value, tone }: { label: string; value: string; tone?: "ok" | "warn" }) {
+  const ring = tone === "ok" ? "ring-success/30 bg-success/5" : tone === "warn" ? "ring-warning/30 bg-warning/5" : "ring-border";
+  return (
+    <div className={`rounded-xl border border-border bg-surface p-4 ring-1 ${ring}`}>
+      <div className="text-[11px] font-medium uppercase tracking-wider text-muted-foreground">{label}</div>
+      <div className="mt-1 text-base font-semibold tracking-tight">{value}</div>
+    </div>
+  );
+}
