@@ -152,6 +152,27 @@ function AnalystPage() {
 
         {/* Side panel */}
         <div className="space-y-4 lg:col-span-4">
+          <Card icon={CheckCircle2} title="Capabilities">
+            <ul className="mt-2 grid grid-cols-1 gap-1.5 text-xs">
+              {CAPABILITIES.map((c) => (
+                <li key={c} className="flex items-center gap-2">
+                  <CheckCircle2 className="h-3.5 w-3.5 text-success" />
+                  <span>{c}</span>
+                </li>
+              ))}
+            </ul>
+          </Card>
+          <Card icon={Database} title="Confidence">
+            <div className="mt-2 grid grid-cols-2 gap-2">
+              <Stat k="Data" v="Grounded" />
+              <Stat k="12" v="Connected Tables" />
+              <Stat k="5,248" v="Records" />
+              <Stat k="Enterprise" v="Dataset" />
+            </div>
+            <div className="mt-3 flex items-center gap-2 rounded-lg bg-success/10 px-3 py-2 text-[11px] font-medium text-success">
+              <CheckCircle2 className="h-3.5 w-3.5" /> No hallucinated metrics
+            </div>
+          </Card>
           <Card icon={Brain} title="How Jarvis reasons">
             Jarvis correlates spend, supplier and process data, then uses LLM reasoning to explain causes and recommend actions grounded in your enterprise dataset.
           </Card>
