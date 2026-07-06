@@ -1,5 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { ShieldAlert, AlertTriangle, ShieldCheck, Globe2, Building2, Sparkles } from "lucide-react";
+import { ShieldAlert, AlertTriangle, ShieldCheck, Building2, Sparkles } from "lucide-react";
 import { AppShell } from "@/components/AppShell";
 import { PageHeader } from "@/components/PageHeader";
 import { KPI } from "@/lib/constants";
