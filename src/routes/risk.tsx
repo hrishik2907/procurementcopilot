@@ -103,3 +103,14 @@ function RiskPage() {
     </AppShell>
   );
 }
+
+function MiniStat({ k, v, tone }: { k: string; v: string; tone?: "bad" | "warn" | "ok" }) {
+  const cls =
+    tone === "bad" ? "text-destructive" : tone === "warn" ? "text-warning" : tone === "ok" ? "text-success" : "text-foreground";
+  return (
+    <div className="rounded-lg border border-border bg-surface p-2">
+      <div className={`text-base font-semibold ${cls}`}>{k}</div>
+      <div className="text-[10px] uppercase tracking-wider text-muted-foreground">{v}</div>
+    </div>
+  );
+}
