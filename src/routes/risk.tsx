@@ -29,16 +29,31 @@ const LEVEL = {
 function RiskPage() {
   return (
     <AppShell>
-      <PageHeader eyebrow="Risk intelligence" title="Risk Center" description="Identify supplier, compliance and concentration risks before they hit the business." />
+      <PageHeader eyebrow="Risk intelligence" title="Risk Center" description="A procurement risk control room — identify supplier, compliance, contract and concentration risks before they hit the business." />
       <div className="mx-auto max-w-7xl space-y-6 px-4 py-6 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-2 gap-4 lg:grid-cols-4">
+        {/* Control room header */}
+        <div className="grid gap-4 lg:grid-cols-5">
+          <div className="rounded-2xl border border-border bg-gradient-to-br from-card to-accent/10 p-5 shadow-soft lg:col-span-2">
+            <div className="text-[11px] font-semibold uppercase tracking-wider text-muted-foreground">Overall Risk Health</div>
+            <div className="mt-2 flex items-end gap-3">
+              <div className="text-4xl font-semibold tracking-tight">72<span className="text-lg text-muted-foreground">/100</span></div>
+              <span className="mb-1.5 rounded-full bg-warning/15 px-2 py-0.5 text-[11px] font-semibold text-warning">Elevated</span>
+            </div>
+            <div className="mt-3 h-2 overflow-hidden rounded-full bg-surface">
+              <div className="h-full rounded-full bg-warning transition-all duration-700" style={{ width: "72%" }} />
+            </div>
+            <div className="mt-3 grid grid-cols-3 gap-2 text-center">
+              <MiniStat k={String(KPI.highRiskSuppliers)} v="Critical Vendors" tone="bad" />
+              <MiniStat k="12" v="Contract Renewals" />
+              <MiniStat k="4" v="Compliance Alerts" tone="warn" />
+            </div>
+          </div>
           {[
-            { i: ShieldAlert, k: "High risk suppliers", v: KPI.highRiskSuppliers, tone: "bad" },
-            { i: AlertTriangle, k: "Medium risk suppliers", v: KPI.mediumRiskSuppliers, tone: "warn" },
-            { i: ShieldCheck, k: "Low risk suppliers", v: KPI.lowRiskSuppliers, tone: "ok" },
-            { i: Globe2, k: "Categories monitored", v: KPI.categories, tone: "neutral" },
+            { i: ShieldAlert, k: "High risk suppliers", v: KPI.highRiskSuppliers, tone: "bad" as const },
+            { i: AlertTriangle, k: "Medium risk suppliers", v: KPI.mediumRiskSuppliers, tone: "warn" as const },
+            { i: ShieldCheck, k: "Low risk suppliers", v: KPI.lowRiskSuppliers, tone: "ok" as const },
           ].map((s) => (
-            <div key={s.k} className="rounded-2xl border border-border bg-card p-5 shadow-soft">
+            <div key={s.k} className="rounded-2xl border border-border bg-card p-5 shadow-soft transition hover:-translate-y-0.5 hover:shadow-elevated">
               <div className="flex items-center gap-2 text-xs text-muted-foreground"><s.i className="h-4 w-4" /> {s.k}</div>
               <div className="mt-2 text-2xl font-semibold">{s.v.toLocaleString()}</div>
             </div>
