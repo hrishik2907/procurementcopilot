@@ -67,6 +67,26 @@ function ReportsPage() {
         }
       />
       <div className="mx-auto max-w-7xl space-y-6 px-4 py-6 sm:px-6 lg:px-8">
+        {/* Executive Summary Bar */}
+        <div className="rounded-2xl border border-border bg-card p-6 shadow-soft">
+          <div className="flex items-center justify-between gap-3">
+            <div>
+              <div className="text-[11px] font-semibold uppercase tracking-[0.22em] text-muted-foreground">Executive Summary</div>
+              <div className="mt-1 text-lg font-semibold tracking-tight">Procurement Health Score</div>
+            </div>
+            <div className="text-right">
+              <div className="text-3xl font-semibold tracking-tight">82<span className="text-base text-muted-foreground">/100</span></div>
+              <div className="text-[11px] font-medium text-success">On track</div>
+            </div>
+          </div>
+          <div className="mt-5 grid grid-cols-2 gap-3 sm:grid-cols-4">
+            <SummaryTile label="Overall Spend" value={KPI.totalSpend} />
+            <SummaryTile label="Savings Identified" value={KPI.savingsRealised} tone="ok" />
+            <SummaryTile label="Risk Exposure" value={`${KPI.highRiskSuppliers} suppliers`} tone="warn" />
+            <SummaryTile label="Budget Utilization" value={`${KPI.budgetUtilPct}%`} />
+          </div>
+        </div>
+
         <div className="rounded-2xl border border-accent/40 bg-gradient-to-br from-accent/15 via-card to-card p-6 shadow-soft transition hover:shadow-elevated">
           <div className="flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-accent-foreground/70">
             <Sparkles className="h-3.5 w-3.5" /> Featured · AI Generated
@@ -135,5 +155,15 @@ function ReportsPage() {
         </div>
       </div>
     </AppShell>
+  );
+}
+
+function SummaryTile({ label, value, tone }: { label: string; value: string; tone?: "ok" | "warn" }) {
+  const ring = tone === "ok" ? "ring-success/30 bg-success/5" : tone === "warn" ? "ring-warning/30 bg-warning/5" : "ring-border";
+  return (
+    <div className={`rounded-xl border border-border bg-surface p-4 ring-1 ${ring}`}>
+      <div className="text-[11px] font-medium uppercase tracking-wider text-muted-foreground">{label}</div>
+      <div className="mt-1 text-base font-semibold tracking-tight">{value}</div>
+    </div>
   );
 }

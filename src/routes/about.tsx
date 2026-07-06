@@ -122,10 +122,56 @@ function AboutPage() {
             </div>
           </div>
         </div>
+
+        {/* Executive Project Summary */}
+        <div className="grid gap-4 lg:grid-cols-2">
+          <Section title="Project Vision">
+            Deliver a Fortune-500-grade procurement analytics experience that turns raw transactional
+            data into board-ready decisions — the same discipline used by leading BI and analytics
+            consulting engagements.
+          </Section>
+          <Section title="Business Problem">
+            Procurement leaders lack a unified view of spend, supplier risk and contract exposure across
+            departments. Answers live in spreadsheets, slide decks and disconnected ERPs.
+          </Section>
+          <Section title="Architecture">
+            Layered pipeline: SQL cleaning → PySpark ETL → Power Query shaping → Power BI semantic model
+            with DAX measures → React portfolio front end → Jarvis AI decision layer.
+          </Section>
+          <Section title="Technology Stack">
+            SQL · PySpark · Power Query · Power BI · DAX · React · TypeScript · AI.
+          </Section>
+          <Section title="Data Pipeline">
+            {KPI.records.toLocaleString("en-IN")} transactional records across {KPI.tables} connected tables
+            covering {KPI.fyRange}: vendors, POs, invoices, contracts, GRs and payments.
+          </Section>
+          <Section title="Key Outcomes">
+            Executive dashboards, supplier risk register, board-ready reports and a natural-language
+            analyst grounded in the enterprise dataset.
+          </Section>
+          <Section title="Business Impact">
+            Identified ₹ 8.42 Cr in realisable savings, flagged {KPI.highRiskSuppliers} high-risk suppliers
+            and reduced PO cycle time by 2.1 days.
+          </Section>
+          <Section title="Lessons Learned">
+            Semantic modelling and DAX design decide dashboard quality more than visuals. Ground the AI
+            in curated measures — not raw tables — to keep explanations trustworthy.
+          </Section>
+        </div>
       </div>
     </AppShell>
   );
 }
+
+function Section({ title, children }: { title: string; children: React.ReactNode }) {
+  return (
+    <div className="rounded-2xl border border-border bg-card p-5 shadow-soft transition hover:-translate-y-0.5 hover:shadow-elevated">
+      <div className="text-[11px] font-semibold uppercase tracking-[0.2em] text-muted-foreground">{title}</div>
+      <p className="mt-2 text-sm text-muted-foreground">{children}</p>
+    </div>
+  );
+}
+
 
 function Stat({ k, v }: { k: string; v: string }) {
   return (

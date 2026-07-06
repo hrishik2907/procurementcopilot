@@ -1,6 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useEffect, useRef, useState } from "react";
-import { Sparkles, Send, User, Brain, Lightbulb, TrendingDown, ShieldAlert } from "lucide-react";
+import { Sparkles, Send, User, Brain, Lightbulb, TrendingDown, ShieldAlert, CheckCircle2, Database } from "lucide-react";
 import { AppShell } from "@/components/AppShell";
 import { PageHeader } from "@/components/PageHeader";
 
@@ -12,10 +12,25 @@ export const Route = createFileRoute("/ai-analyst")({
 type Msg = { role: "user" | "ai"; text: string; typing?: boolean };
 
 const SUGGESTIONS = [
-  "Why did maverick spend increase last month?",
-  "Which suppliers are at highest risk of disruption?",
-  "Explain the rise in IT Services costs in Q4.",
-  "Suggest 3 actions to reduce PO cycle time.",
+  "Why did IT spend increase this quarter?",
+  "Which suppliers require executive attention?",
+  "Show procurement savings opportunities.",
+  "Which departments exceeded budget?",
+  "Explain supplier concentration risk.",
+  "Find delayed purchase orders.",
+  "Which vendors have highest invoice mismatch?",
+  "Show contract renewals due this quarter.",
+];
+
+const CAPABILITIES = [
+  "Procurement Analytics",
+  "Root Cause Analysis",
+  "Supplier Intelligence",
+  "Risk Detection",
+  "Executive Reporting",
+  "Cost Saving Recommendations",
+  "Natural Language Querying",
+  "Procurement KPI Explanation",
 ];
 
 const SAMPLE = `Maverick spend rose by 1.9% in October, driven primarily by IT Services (+4.2%).
@@ -34,7 +49,11 @@ Estimated impact: −₹ 3.35 Cr run-rate maverick spend, +2.1 days faster PO cy
 
 function AnalystPage() {
   const [messages, setMessages] = useState<Msg[]>([
-    { role: "ai", text: "Hi Hrishik — Jarvis here. I've ingested your FY2024–FY2026 procurement dataset (5,248 rows across 12 tables). Ask me anything about spend, suppliers, contracts or risk." },
+    {
+      role: "ai",
+      text:
+        "Hello Hrishik.\n\nI've analyzed your enterprise procurement dataset containing 5,248 business transactions across 12 connected tables.\n\nI can explain procurement trends, identify supplier risks, analyze spending patterns, detect procurement bottlenecks, recommend savings opportunities and answer questions grounded entirely in your enterprise dataset.",
+    },
   ]);
   const [input, setInput] = useState("");
   const [busy, setBusy] = useState(false);
@@ -133,6 +152,27 @@ function AnalystPage() {
 
         {/* Side panel */}
         <div className="space-y-4 lg:col-span-4">
+          <Card icon={CheckCircle2} title="Capabilities">
+            <ul className="mt-2 grid grid-cols-1 gap-1.5 text-xs">
+              {CAPABILITIES.map((c) => (
+                <li key={c} className="flex items-center gap-2">
+                  <CheckCircle2 className="h-3.5 w-3.5 text-success" />
+                  <span>{c}</span>
+                </li>
+              ))}
+            </ul>
+          </Card>
+          <Card icon={Database} title="Confidence">
+            <div className="mt-2 grid grid-cols-2 gap-2">
+              <Stat k="Data" v="Grounded" />
+              <Stat k="12" v="Connected Tables" />
+              <Stat k="5,248" v="Records" />
+              <Stat k="Enterprise" v="Dataset" />
+            </div>
+            <div className="mt-3 flex items-center gap-2 rounded-lg bg-success/10 px-3 py-2 text-[11px] font-medium text-success">
+              <CheckCircle2 className="h-3.5 w-3.5" /> No hallucinated metrics
+            </div>
+          </Card>
           <Card icon={Brain} title="How Jarvis reasons">
             Jarvis correlates spend, supplier and process data, then uses LLM reasoning to explain causes and recommend actions grounded in your enterprise dataset.
           </Card>
@@ -156,6 +196,28 @@ function AnalystPage() {
               <Stat k="+2.1d" v="Faster PO cycle" />
             </div>
           </Card>
+        </div>
+
+        {/* Popular Business Questions */}
+        <div className="lg:col-span-12">
+          <div className="rounded-2xl border border-border bg-card p-6 shadow-soft">
+            <div className="flex items-center gap-2">
+              <Sparkles className="h-4 w-4 text-accent" />
+              <div className="text-sm font-semibold">Popular Business Questions</div>
+            </div>
+            <div className="mt-4 grid gap-2 sm:grid-cols-2 lg:grid-cols-4">
+              {SUGGESTIONS.map((s) => (
+                <button
+                  key={s}
+                  onClick={() => send(s)}
+                  className="group flex items-start gap-2 rounded-xl border border-border bg-surface p-3 text-left text-xs transition hover:-translate-y-0.5 hover:border-foreground/20 hover:bg-card hover:shadow-soft"
+                >
+                  <Sparkles className="mt-0.5 h-3.5 w-3.5 shrink-0 text-accent" />
+                  <span>{s}</span>
+                </button>
+              ))}
+            </div>
+          </div>
         </div>
       </div>
     </AppShell>
