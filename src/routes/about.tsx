@@ -170,6 +170,8 @@ function Section({ title, children }: { title: string; children: React.ReactNode
       <p className="mt-2 text-sm text-muted-foreground">{children}</p>
     </div>
   );
+}
+
 
 function Stat({ k, v }: { k: string; v: string }) {
   return (
