@@ -188,3 +188,25 @@ function Field({ i: I, k, v, href }: { i: any; k: string; v: string; href?: stri
     <div className="rounded-xl border border-border bg-surface p-3">{body}</div>
   );
 }
+
+function Block({ title, children, className = "" }: { title: string; children: React.ReactNode; className?: string }) {
+  return (
+    <div className={`rounded-2xl border border-border bg-card p-6 shadow-soft transition hover:-translate-y-0.5 hover:shadow-elevated ${className}`}>
+      <div className="text-[11px] font-semibold uppercase tracking-[0.2em] text-muted-foreground">{title}</div>
+      <div className="mt-3 space-y-3 text-sm text-muted-foreground">{children}</div>
+    </div>
+  );
+}
+
+function SkillGroup({ title, items }: { title: string; items: string[] }) {
+  return (
+    <div>
+      <div className="text-[11px] font-semibold uppercase tracking-wider text-muted-foreground">{title}</div>
+      <div className="mt-1.5 flex flex-wrap gap-1.5">
+        {items.map((i) => (
+          <span key={i} className="rounded-full border border-border bg-surface px-2.5 py-0.5 text-[11px] font-medium text-foreground">{i}</span>
+        ))}
+      </div>
+    </div>
+  );
+}
