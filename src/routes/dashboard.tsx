@@ -95,33 +95,61 @@ function DashboardPage() {
           </div>
         </header>
 
+        {/* Business KPIs */}
+        <section>
+          <SectionHeading eyebrow="Business KPIs" title="At-a-glance procurement performance" />
+          <div className="mt-6 grid gap-3 sm:grid-cols-3 lg:grid-cols-6">
+            <KPI_Tile label="Total Spend" value="₹ 351.05 Cr" />
+            <KPI_Tile label="Suppliers" value="300" />
+            <KPI_Tile label="Purchase Orders" value="1,209" />
+            <KPI_Tile label="Contracts" value="₹ 170.42 Cr" />
+            <KPI_Tile label="Risk Score" value="72 / 100" tone="warn" />
+            <KPI_Tile label="Budget Utilization" value="84%" tone="ok" />
+          </div>
+        </section>
+
+        {/* What this dashboard answers */}
+        <section className="grid gap-6 lg:grid-cols-2">
+          <AnswerCard
+            title="Executive Overview"
+            items={["Where money is spent", "Monthly spend trend", "Vendor concentration", "Category performance"]}
+          />
+          <AnswerCard
+            title="Procurement Analytics"
+            items={["Budget utilization", "Supplier risk", "Contract management", "Vendor recommendations"]}
+          />
+        </section>
+
         {/* Dashboard Screenshots */}
-        <section className="grid grid-cols-1 gap-6 lg:grid-cols-2">
-          {SCREENSHOTS.map((s, i) => (
-            <button
-              key={s.src}
-              type="button"
-              onClick={() => setLbIndex(i)}
-              className="group flex flex-col overflow-hidden rounded-2xl border border-border bg-card text-left shadow-soft transition hover:-translate-y-0.5 hover:shadow-elevated"
-            >
-              <div className="relative aspect-[16/10] w-full overflow-hidden bg-gradient-to-br from-muted/40 via-background to-accent/5">
-                <img
-                  src={s.src}
-                  alt={s.alt}
-                  loading="eager"
-                  className="h-full w-full object-cover transition duration-500 group-hover:scale-[1.02]"
-                />
-                <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent opacity-0 transition group-hover:opacity-100" />
-                <div className="absolute right-3 top-3 inline-flex items-center gap-1.5 rounded-lg bg-black/60 px-2.5 py-1 text-[11px] font-semibold text-white opacity-0 backdrop-blur transition group-hover:opacity-100">
-                  <Maximize2 className="h-3.5 w-3.5" /> Open fullscreen
+        <section>
+          <SectionHeading eyebrow="Interactive Report" title="Power BI Dashboards" />
+          <div className="mt-6 grid grid-cols-1 gap-6 lg:grid-cols-2">
+            {SCREENSHOTS.map((s, i) => (
+              <button
+                key={s.src}
+                type="button"
+                onClick={() => setLbIndex(i)}
+                className="group flex flex-col overflow-hidden rounded-2xl border border-border bg-card text-left shadow-soft transition duration-300 hover:-translate-y-1 hover:shadow-elevated"
+              >
+                <div className="relative aspect-[16/10] w-full overflow-hidden bg-gradient-to-br from-muted/40 via-background to-accent/5">
+                  <img
+                    src={s.src}
+                    alt={s.alt}
+                    loading="eager"
+                    className="h-full w-full object-cover transition duration-500 group-hover:scale-[1.04]"
+                  />
+                  <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent opacity-0 transition group-hover:opacity-100" />
+                  <div className="absolute right-3 top-3 inline-flex items-center gap-1.5 rounded-lg bg-black/70 px-2.5 py-1 text-[11px] font-semibold text-white opacity-0 backdrop-blur transition group-hover:opacity-100">
+                    <Maximize2 className="h-3.5 w-3.5" /> Open Interactive Dashboard
+                  </div>
                 </div>
-              </div>
-              <div className="flex flex-1 flex-col p-5">
-                <h3 className="text-base font-semibold">{s.title}</h3>
-                <p className="mt-1 flex-1 text-sm text-muted-foreground">{s.description}</p>
-              </div>
-            </button>
-          ))}
+                <div className="flex flex-1 flex-col p-5">
+                  <h3 className="text-base font-semibold">{s.title}</h3>
+                  <p className="mt-1 flex-1 text-sm text-muted-foreground">{s.description}</p>
+                </div>
+              </button>
+            ))}
+          </div>
         </section>
 
         {/* Continue actions */}
